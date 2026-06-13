@@ -126,7 +126,7 @@
         scrollTrigger:{ trigger:el, start:'top 82%' } });
     });
 
-    ['.stat','.tcard','.ecard','.qpu__specs li','.gitem','.contact__grid > div','.about__chips .chip']
+    ['.stat','.tcard','.ecard','.appcard','.qpu__specs li','.gitem','.contact__grid > div','.about__chips .chip']
       .forEach(sel=>{
         gsap.utils.toArray(sel).forEach((el,i)=>{
           gsap.from(el, { y:46, opacity:0, duration:.9, ease:'power3.out', delay:(i%4)*0.06,
@@ -241,6 +241,35 @@
       });
     };
     walk(el);
+  })();
+
+  /* ─── APPLICATIONS carousel (drag + arrows) ─────────── */
+  (function appsCarousel(){
+    const vp = document.getElementById('appsViewport');
+    const track = document.getElementById('appsTrack');
+    const prev = document.getElementById('appsPrev');
+    const next = document.getElementById('appsNext');
+    if(!vp || !track) return;
+    const card = track.querySelector('.appcard');
+    const step = ()=> card ? card.getBoundingClientRect().width + 22 : 360;
+    const updateBtns = ()=>{
+      if(!prev||!next) return;
+      prev.disabled = vp.scrollLeft <= 4;
+      next.disabled = vp.scrollLeft >= vp.scrollWidth - vp.clientWidth - 4;
+    };
+    prev && prev.addEventListener('click', ()=> vp.scrollBy({ left:-step(), behavior:'smooth' }));
+    next && next.addEventListener('click', ()=> vp.scrollBy({ left:step(), behavior:'smooth' }));
+    vp.addEventListener('scroll', updateBtns, { passive:true });
+    updateBtns();
+
+    // drag to scroll
+    let down=false, startX=0, startScroll=0, moved=false;
+    vp.addEventListener('pointerdown', e=>{ down=true; moved=false; startX=e.clientX; startScroll=vp.scrollLeft; vp.classList.add('is-dragging'); });
+    window.addEventListener('pointermove', e=>{ if(!down) return; const dx=e.clientX-startX;
+      if(Math.abs(dx)>4) moved=true; vp.scrollLeft = startScroll - dx; });
+    window.addEventListener('pointerup', ()=>{ if(!down) return; down=false; vp.classList.remove('is-dragging'); });
+    // prevent click navigation right after a drag
+    track.addEventListener('click', e=>{ if(moved){ e.preventDefault(); e.stopPropagation(); } }, true);
   })();
 
   /* ─── LIGHTBOX ──────────────────────────────────────── */
