@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QMHP·CoPro — Erasure-Biased Heavy-Fluxonium Quantum Coprocessor</title>
+  <meta name="description" content="QMHP-CoPro is a TRL-2 architecture roadmap for an erasure-biased heavy-fluxonium superconducting quantum coprocessor, with a proposed dark-state CZ gate and a Phase-1 dual-rail cat-state interconnect." />
+  <meta name="theme-color" content="#05060a" />
+
+  <meta property="og:title" content="QMHP·CoPro — Heavy-Fluxonium Quantum Coprocessor" />
+  <meta property="og:description" content="An erasure-biased heavy-fluxonium superconducting coprocessor. Distance-3 surface-code logic, dark-state CZ, and a 15–20 mK cryogenic platform." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/img/cryostat-hero.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ░░ PRELOADER ░░ -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__inner">
+      <div class="preloader__mark">
+        <span class="ket">|0⟩</span><span class="ket ket--mid">|1⟩</span><span class="ket">|2⟩</span>
+      </div>
+      <div class="preloader__bar"><span id="preloaderFill"></span></div>
+      <div class="preloader__meta">
+        <span>QMHP·CoPro</span>
+        <span id="preloaderPct">0%</span>
+      </div>
+      <div class="preloader__status" id="preloaderStatus">Cooling mixing chamber…</div>
+    </div>
+  </div>
+
+  <!-- ░░ CUSTOM CURSOR ░░ -->
+  <div class="cursor" id="cursor"><div class="cursor__dot"></div><div class="cursor__ring"></div></div>
+
+  <!-- ░░ GRAIN + SCANLINE OVERLAY ░░ -->
+  <div class="fx-grain" aria-hidden="true"></div>
+
+  <!-- ░░ NAV ░░ -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__brand" data-cursor="hover">
+      <span class="nav__glyph">⎔</span>
+      <span class="nav__name">QMHP<span class="dot">·</span>CoPro</span>
+    </a>
+    <nav class="nav__links">
+      <a href="#technology" data-cursor="hover">Technology</a>
+      <a href="#architecture" data-cursor="hover">Architecture</a>
+      <a href="#qpu" data-cursor="hover">Processor</a>
+      <a href="#validation" data-cursor="hover">Validation</a>
+      <a href="#edge" data-cursor="hover">Our Edge</a>
+      <a href="#about" data-cursor="hover">About</a>
+    </nav>
+    <a href="#contact" class="nav__cta" data-cursor="hover">Contact</a>
+    <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+  </header>
+
+  <!-- ░░ MOBILE MENU ░░ -->
+  <div class="menu" id="menu">
+    <nav class="menu__links">
+      <a href="#technology" data-cursor="hover"><span>01</span>Technology</a>
+      <a href="#architecture" data-cursor="hover"><span>02</span>Architecture</a>
+      <a href="#qpu" data-cursor="hover"><span>03</span>Processor</a>
+      <a href="#validation" data-cursor="hover"><span>04</span>Validation</a>
+      <a href="#edge" data-cursor="hover"><span>05</span>Our Edge</a>
+      <a href="#about" data-cursor="hover"><span>06</span>About</a>
+      <a href="#contact" data-cursor="hover"><span>07</span>Contact</a>
+    </nav>
+  </div>
+
+  <main id="top">
+
+    <!-- ░░░░ HERO ░░░░ -->
+    <section class="hero" id="hero">
+      <canvas id="quantum-canvas" class="hero__canvas"></canvas>
+      <div class="hero__veil"></div>
+
+      <div class="hero__content">
+        <div class="hero__eyebrow"><span></span>Heavy-Fluxonium Superconducting Coprocessor</div>
+        <h1 class="hero__title">
+          <span class="line"><span>The qubit that</span></span>
+          <span class="line"><span>knows when it</span></span>
+          <span class="line"><span><em>erases itself.</em></span></span>
+        </h1>
+        <p class="hero__lede">
+          QMHP·CoPro is an erasure-biased heavy-fluxonium architecture that encodes logic in
+          <span class="hl">|0⟩–|2⟩</span> and converts dominant errors into a heralded
+          <span class="hl">|1⟩</span> erasure manifold — turning leakage into information.
+        </p>
+        <div class="hero__actions">
+          <a href="#technology" class="btn btn--primary" data-cursor="hover">Explore the architecture <i>→</i></a>
+          <a href="#qpu" class="btn btn--ghost" data-cursor="hover">See the processor</a>
+        </div>
+      </div>
+
+      <div class="hero__ticker" id="ticker">
+        <div class="ticker__track">
+          <span>DARK-STATE CZ GATE</span><span class="sep">✦</span>
+          <span>DISTANCE-3 SURFACE CODE</span><span class="sep">✦</span>
+          <span>15–20 mK MIXING CHAMBER</span><span class="sep">✦</span>
+          <span>ERASURE-BIASED LOGIC</span><span class="sep">✦</span>
+          <span>DUAL-RAIL CAT INTERCONNECT</span><span class="sep">✦</span>
+          <span>DARK-STATE CZ GATE</span><span class="sep">✦</span>
+          <span>DISTANCE-3 SURFACE CODE</span><span class="sep">✦</span>
+          <span>15–20 mK MIXING CHAMBER</span><span class="sep">✦</span>
+          <span>ERASURE-BIASED LOGIC</span><span class="sep">✦</span>
+          <span>DUAL-RAIL CAT INTERCONNECT</span><span class="sep">✦</span>
+        </div>
+      </div>
+
+      <a href="#manifesto" class="hero__scroll" data-cursor="hover">
+        <span>Scroll</span>
+        <span class="hero__scroll-line"></span>
+      </a>
+    </section>
+
+    <!-- ░░░░ MANIFESTO ░░░░ -->
+    <section class="manifesto" id="manifesto">
+      <div class="manifesto__tag">[ 00 — Thesis ]</div>
+      <h2 class="manifesto__text reveal-words">
+        A half-flux heavy-fluxonium qubit lives at an awkward level structure.
+        We are testing whether that awkwardness becomes a useful, erasure-aware
+        primitive — where hidden relaxation and leakage are <em>made visible</em>,
+        heralded, and pivot-protected.
+      </h2>
+      <div class="manifesto__foot">
+        <p>This is a TRL-2 architecture roadmap with explicit acceptance criteria, quantified risks, and pivot triggers. It is not experimental proof — every projection remains conditional on the validation-gate chain.</p>
+      </div>
+    </section>
+
+    <!-- ░░░░ HEADLINE QUANTITIES ░░░░ -->
+    <section class="stats" id="stats">
+      <div class="section-head">
+        <span class="section-head__idx">01</span>
+        <h2 class="section-head__title">Headline quantities</h2>
+        <p class="section-head__sub">Proposed and internally derived. Conditional until gates P3, P5 and P4 pass experimental validation.</p>
+      </div>
+      <div class="stats__grid">
+        <article class="stat" data-cursor="hover">
+          <div class="stat__num"><span class="count" data-target="7.35">0.00</span><span class="stat__exp">×10⁻³</span></div>
+          <h3 class="stat__label">Error budget</h3>
+          <p class="stat__desc">Unlocalized error per syndrome-extraction round against a ~1×10⁻² accounting ceiling — a 1.36× margin on the nominal allocation.</p>
+        </article>
+        <article class="stat" data-cursor="hover">
+          <div class="stat__num"><span class="count" data-target="6.3">0.0</span><span class="stat__exp">×10⁻⁴</span></div>
+          <h3 class="stat__label">Dark-state CZ leakage</h3>
+          <p class="stat__desc">Inner-window leakage estimate δF<sub>CZ</sub>. Device-level CZ infidelity projected at 7.6–8.6×10⁻³ before P4 validation.</p>
+        </article>
+        <article class="stat" data-cursor="hover">
+          <div class="stat__num"><span class="count" data-target="3" data-decimals="0">0</span><span class="stat__exp">distance</span></div>
+          <h3 class="stat__label">Surface-code tile</h3>
+          <p class="stat__desc">A distance-3 logical tile: 9 data qubits, 8 stabilizers (X1–X4, Z1–Z4), with dedicated erasure-flag readout.</p>
+        </article>
+        <article class="stat" data-cursor="hover">
+          <div class="stat__num"><span class="count" data-target="15" data-decimals="0">0</span><span class="stat__exp">–20 mK</span></div>
+          <h3 class="stat__label">Operating temperature</h3>
+          <p class="stat__desc">Five-stage pulse-tube dilution platform: 300 K → 50 K → 4 K → 700 mK → 100 mK → mixing chamber.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ░░░░ TECHNOLOGY ░░░░ -->
+    <section class="tech" id="technology">
+      <div class="section-head">
+        <span class="section-head__idx">02</span>
+        <h2 class="section-head__title">The technology</h2>
+        <p class="section-head__sub">Encode in the outer levels. Herald the middle. Convert error into information.</p>
+      </div>
+
+      <div class="tech__layout">
+        <div class="tech__media" data-parallax-media>
+          <img src="assets/img/system-integration.jpg" alt="QMHP-CoPro full system integration: cryogenic system, control electronics, and quantum processor unit" loading="lazy" />
+          <div class="tech__media-cap">Full-system integration — Distance-3 surface-code logical tile</div>
+        </div>
+
+        <div class="tech__cards">
+          <article class="tcard" data-cursor="hover">
+            <span class="tcard__n">|0⟩ – |2⟩</span>
+            <h3>Computational encoding</h3>
+            <p>Logic is stored in the heavy-fluxonium <strong>|0⟩</strong> and <strong>|2⟩</strong> levels, sidestepping the relaxation-prone first excited state and exploiting the protected half-flux level structure.</p>
+          </article>
+          <article class="tcard" data-cursor="hover">
+            <span class="tcard__n">|1⟩</span>
+            <h3>Erasure manifold</h3>
+            <p>The dominant decay and leakage pathways are routed into <strong>|1⟩</strong>, then read out by dedicated erasure-flag resonators. A detected erasure is a <em>known</em> error location — far cheaper to correct than a silent one.</p>
+          </article>
+          <article class="tcard" data-cursor="hover">
+            <span class="tcard__n">CZ</span>
+            <h3>Dark-state CZ gate</h3>
+            <p>A proposed controlled-Z built on a dark-state interaction with an inner-window leakage estimate of <strong>6.3×10⁻⁴</strong>. The architecture is judged on a falsifiable derivation, not an idealized ceiling.</p>
+          </article>
+          <article class="tcard" data-cursor="hover">
+            <span class="tcard__n">⚯</span>
+            <h3>Dual-rail interconnect</h3>
+            <p>Phase-1 extends the lattice through a <strong>dual-rail cat-state</strong> photonic interconnect — a separate ledger validated as infrastructure, never folded into inherited success claims.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░░░ ARCHITECTURE — PINNED CRYOSTAT ░░░░ -->
+    <section class="cryo" id="architecture">
+      <div class="cryo__sticky">
+        <div class="cryo__visual">
+          <img src="assets/img/cryostat-hero.jpg" alt="QMHP-CoPro dilution refrigerator cryostat" class="cryo__img" id="cryoImg" />
+          <div class="cryo__scrim"></div>
+          <div class="cryo__readout">
+            <span class="cryo__readout-k" id="cryoTemp">300 K</span>
+            <span class="cryo__readout-l" id="cryoStageName">Room-temperature electronics</span>
+          </div>
+        </div>
+
+        <div class="cryo__rail">
+          <div class="section-head section-head--light">
+            <span class="section-head__idx">03</span>
+            <h2 class="section-head__title">Five stages to near&#8209;zero</h2>
+          </div>
+          <ol class="cryo__stages" id="cryoStages">
+            <li class="cstage" data-temp="300 K" data-name="Room-temperature electronics">
+              <span class="cstage__k">300 K</span>
+              <div class="cstage__body"><h3>Room temperature</h3><p>A 19-inch RF rack — AWG synthesizers, attenuators, flux-bias sources and classical control servers — drives the chain from outside the fridge.</p></div>
+            </li>
+            <li class="cstage" data-temp="50 K" data-name="Outer thermal shield">
+              <span class="cstage__k">50 K</span>
+              <div class="cstage__body"><h3>Outer shield</h3><p>Pulse-tube first stage and gold-plated copper shield anchor the bulk thermal load and host the first line attenuation.</p></div>
+            </li>
+            <li class="cstage" data-temp="4 K" data-name="Radiation shield · HEMT amplifiers">
+              <span class="cstage__k">4 K</span>
+              <div class="cstage__body"><h3>4 K stage</h3><p>The output line meets its HEMT low-noise amplifiers; input lines carry further calibrated attenuation and IR filtering.</p></div>
+            </li>
+            <li class="cstage" data-temp="700 mK" data-name="Still stage">
+              <span class="cstage__k">700 mK</span>
+              <div class="cstage__body"><h3>Still</h3><p>The dilution unit's still stage continues thermalization of every coax line and microwave component along the chain.</p></div>
+            </li>
+            <li class="cstage" data-temp="100 mK" data-name="Cold plate">
+              <span class="cstage__k">100 mK</span>
+              <div class="cstage__body"><h3>Cold plate</h3><p>Final-stage attenuators, isolators and superconducting wiring stage the signal for the quantum chip below.</p></div>
+            </li>
+            <li class="cstage" data-temp="15–20 mK" data-name="Mixing chamber · Quantum Processor Unit">
+              <span class="cstage__k">15–20 mK</span>
+              <div class="cstage__body"><h3>Mixing chamber</h3><p>The QPU sits on the coldest plate of the machine — a gold-plated copper mount holding the 20 mm sapphire processor in its light-tight enclosure.</p></div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░░░ QPU ░░░░ -->
+    <section class="qpu" id="qpu">
+      <div class="section-head">
+        <span class="section-head__idx">04</span>
+        <h2 class="section-head__title">The Quantum Processor Unit</h2>
+        <p class="section-head__sub">A 20 mm tile of engineered silence — every element placed for manufacturability, scalability and falsifiable test.</p>
+      </div>
+
+      <div class="qpu__layout">
+        <figure class="qpu__chip" data-cursor="hover">
+          <img src="assets/img/fullsystem-labeled.jpg" alt="QMHP-CoPro full system, labeled" loading="lazy" />
+          <figcaption>QMHP·CoPro v6.2 — labeled full system</figcaption>
+        </figure>
+        <ul class="qpu__specs">
+          <li><span class="qpu__k">9</span><div><h3>Heavy-fluxonium data qubits</h3><p>Josephson-junction-array superinductors set the heavy-fluxonium regime for leakage suppression and coherence.</p></div></li>
+          <li><span class="qpu__k">8</span><div><h3>Stabilizer qubits</h3><p>Four X-type and four Z-type (X1–X4, Z1–Z4) read the surface-code parity checks of the distance-3 tile.</p></div></li>
+          <li><span class="qpu__k">8</span><div><h3>Flux-tunable couplers</h3><p>Parametric couplers gate the nearest-neighbour interactions that drive the dark-state CZ.</p></div></li>
+          <li><span class="qpu__k">⚑</span><div><h3>Erasure-flag resonators</h3><p>Dedicated readout on the data qubits heralds |1⟩ erasure events for faster detection and lower logical error.</p></div></li>
+        </ul>
+      </div>
+
+      <div class="qpu__lattice" id="latticeWrap" data-cursor="hover">
+        <canvas id="lattice-canvas"></canvas>
+        <span class="qpu__lattice-cap">Distance-3 surface-code logical tile — live</span>
+      </div>
+    </section>
+
+    <!-- ░░░░ VALIDATION GATE CHAIN — HORIZONTAL ░░░░ -->
+    <section class="gates" id="validation">
+      <div class="gates__head">
+        <div class="section-head section-head--light">
+          <span class="section-head__idx">05</span>
+          <h2 class="section-head__title">The validation gate chain</h2>
+          <p class="section-head__sub">Every claim is tied to a named gate, an acceptance threshold and a failure path. If a gate fails, the result still narrows the half-flux route.</p>
+        </div>
+      </div>
+      <div class="gates__viewport" id="gatesViewport">
+        <div class="gates__track" id="gatesTrack">
+          <article class="gate">
+            <span class="gate__id">P0</span><span class="gate__phase">Operational</span>
+            <h3>Active reset</h3>
+            <p>Two-pathway reset of the half-flux thermal |1⟩ population, kept below ≈1% and bounded through a syndrome round.</p>
+          </article>
+          <article class="gate">
+            <span class="gate__id">P1</span><span class="gate__phase">Static bias</span>
+            <h3>Static erasure bias</h3>
+            <p>Target the static and trajectory-averaged erasure bias b/b_eff strong enough to justify the half-flux operating point.</p>
+          </article>
+          <article class="gate">
+            <span class="gate__id">P3</span><span class="gate__phase">Coherence</span>
+            <h3>Coherence floor</h3>
+            <p>Establish that fidelity rather than merely the ideal-case derivation carries the proposed dark-state CZ.</p>
+          </article>
+          <article class="gate">
+            <span class="gate__id">P4·pre</span><span class="gate__phase">Calibration</span>
+            <h3>Calibration precursor</h3>
+            <p>A calibration step that conditions P4 — not an architecture change, but the bridge to device-level measurement.</p>
+          </article>
+          <article class="gate gate--key">
+            <span class="gate__id">P4</span><span class="gate__phase">Device CZ</span>
+            <h3>Dark-state CZ on hardware</h3>
+            <p>Measured device-level CZ reaches the stated infidelity band — the artefact trail and the load-bearing proof.</p>
+          </article>
+          <article class="gate">
+            <span class="gate__id">P5</span><span class="gate__phase">Budget</span>
+            <h3>Error-budget closure</h3>
+            <p>The measured per-round error stays under the accounting ceiling with margin intact.</p>
+          </article>
+          <article class="gate">
+            <span class="gate__id">P6 · P7</span><span class="gate__phase">Logical</span>
+            <h3>Logical cycle</h3>
+            <p>Distance-3 logical cycle and distance scaling work under measured hardware error — not accounting shorthand.</p>
+          </article>
+          <article class="gate gate--infra">
+            <span class="gate__id">V1–V3</span><span class="gate__phase">Infrastructure</span>
+            <h3>Infra qualification</h3>
+            <p>Run in parallel as infrastructure-qualification gates — the platform, lines and interconnect proven on their own ledger.</p>
+          </article>
+          <article class="gate gate--end">
+            <span class="gate__id">→</span><span class="gate__phase">Posture</span>
+            <h3>Falsifiable by design</h3>
+            <p>The document is strongest when every number is tied to a gate. Conditional until P3, P5 and P4 pass.</p>
+          </article>
+        </div>
+      </div>
+      <div class="gates__progress"><span id="gatesProgress"></span></div>
+    </section>
+
+    <!-- ░░░░ OUR EDGE ░░░░ -->
+    <section class="edge" id="edge">
+      <div class="section-head">
+        <span class="section-head__idx">06</span>
+        <h2 class="section-head__title">Our edge</h2>
+        <p class="section-head__sub">Four design commitments that separate a roadmap worth testing from a number worth doubting.</p>
+      </div>
+      <div class="edge__grid">
+        <article class="ecard" data-cursor="hover">
+          <span class="ecard__i">⤳</span>
+          <h3>Error becomes information</h3>
+          <p>Heavy-fluxonium qubits route leakage into a heralded erasure channel. Detected errors are cheaper to correct than hidden ones — the whole code budget changes.</p>
+        </article>
+        <article class="ecard" data-cursor="hover">
+          <span class="ecard__i">❄</span>
+          <h3>Coherence by construction</h3>
+          <p>Josephson-junction-array superinductors and the half-flux operating point are chosen for leakage suppression and high coherence, not retrofitted around it.</p>
+        </article>
+        <article class="ecard" data-cursor="hover">
+          <span class="ecard__i">⌗</span>
+          <h3>Modular by photonic link</h3>
+          <p>A dual-rail cat-state interconnect lets tiles scale through a photonic fabric — modularity designed in at Phase-1, on its own validation ledger.</p>
+        </article>
+        <article class="ecard" data-cursor="hover">
+          <span class="ecard__i">⚙</span>
+          <h3>Engineered to be built</h3>
+          <p>Every plate, package and line is drawn for manufacturability, scalability and experimental test — a roadmap that survives contact with a fab.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ░░░░ GALLERY ░░░░ -->
+    <section class="gallery" id="gallery">
+      <div class="section-head">
+        <span class="section-head__idx">07</span>
+        <h2 class="section-head__title">Inside the machine</h2>
+      </div>
+      <div class="gallery__grid">
+        <figure class="gitem gitem--tall" data-cursor="zoom" data-src="assets/img/cryostat-hero.jpg">
+          <img src="assets/img/cryostat-hero-sm.jpg" alt="Dilution refrigerator cryostat in the lab" loading="lazy" />
+          <figcaption><span>01</span>Dilution cryostat</figcaption>
+        </figure>
+        <figure class="gitem" data-cursor="zoom" data-src="assets/img/system-integration.jpg">
+          <img src="assets/img/system-integration-sm.jpg" alt="Full system integration diagram" loading="lazy" />
+          <figcaption><span>02</span>System integration</figcaption>
+        </figure>
+        <figure class="gitem" data-cursor="zoom" data-src="assets/img/fullsystem-labeled.jpg">
+          <img src="assets/img/fullsystem-labeled-sm.jpg" alt="Labeled full system" loading="lazy" />
+          <figcaption><span>03</span>Signal chain</figcaption>
+        </figure>
+        <figure class="gitem gitem--tall" data-cursor="zoom" data-src="assets/img/quantum-stack.jpg">
+          <img src="assets/img/quantum-stack-sm.jpg" alt="Inside a quantum computer — cutaway of the cryogenic stack" loading="lazy" />
+          <figcaption><span>04</span>Cryogenic stack</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ░░░░ ABOUT / STATUS ░░░░ -->
+    <section class="about" id="about">
+      <div class="about__inner">
+        <div class="section-head">
+          <span class="section-head__idx">08</span>
+          <h2 class="section-head__title">Document status</h2>
+        </div>
+        <div class="about__cols">
+          <p class="about__lead">QMHP·CoPro should be read as a falsifiable roadmap. It is strongest when every claim is tied to a validation gate, an acceptance threshold and a pivot trigger.</p>
+          <div class="about__detail">
+            <p>The value of this document is not that every number is demonstrated — it is that every major claim already has a named validation gate, threshold, artefact trail and failure path. The half-flux operating point carries a 36–40% thermal-|1⟩ population that must be actively reset to ≤1% before each syndrome round and held there for the duration of the round.</p>
+            <p>If the half-flux operating point does not close, an integer-flux fallback is defined as a separate ledger rather than an inherited success claim. This is suitable for controlled technical review as a roadmap — fabrication review still requires normal engineering sign-off, tolerance review, vendor validation and lab-specific verification.</p>
+            <div class="about__chips">
+              <span class="chip">TRL-2 architecture roadmap</span>
+              <span class="chip">Not experimental proof</span>
+              <span class="chip">Conditional until P3 · P5 · P4</span>
+              <span class="chip">Integer-flux fallback defined</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░░░ CONTACT / CTA ░░░░ -->
+    <section class="contact" id="contact">
+      <canvas id="contact-canvas" class="contact__canvas"></canvas>
+      <div class="contact__inner">
+        <span class="section-head__idx">09</span>
+        <h2 class="contact__title">Bring the<br/><em>cold logic</em> forward.</h2>
+        <p class="contact__sub">For technical review, partnership, investment or research collaboration on the QMHP·CoPro program.</p>
+        <div class="contact__actions">
+          <a href="mailto:research@qmhp-copro.tech" class="btn btn--primary btn--lg" data-cursor="hover">research@qmhp-copro.tech <i>→</i></a>
+        </div>
+        <div class="contact__grid">
+          <div><span class="contact__k">Partnerships</span><p>Vendor validation & fabrication review</p></div>
+          <div><span class="contact__k">Investors</span><p>Program roadmap & milestone briefings</p></div>
+          <div><span class="contact__k">Research</span><p>Gate-chain collaboration & co-publication</p></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ░░ FOOTER ░░ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <a href="#top" class="footer__brand" data-cursor="hover"><span class="nav__glyph">⎔</span> QMHP·CoPro</a>
+      <a href="#top" class="footer__back" data-cursor="hover">Back to top ↑</a>
+    </div>
+    <div class="footer__cols">
+      <div><span>Program</span><a href="#technology">Technology</a><a href="#architecture">Architecture</a><a href="#qpu">Processor</a></div>
+      <div><span>Evidence</span><a href="#validation">Validation gates</a><a href="#about">Document status</a><a href="#edge">Our edge</a></div>
+      <div><span>Connect</span><a href="#contact">Contact</a><a href="mailto:research@qmhp-copro.tech">Email</a></div>
+    </div>
+    <div class="footer__base">
+      <span>© 2026 QMHP·CoPro Research Team — TRL-2 architecture roadmap. Not experimental proof.</span>
+      <span>Heavy-fluxonium · Erasure-biased · Distance-3</span>
+    </div>
+  </footer>
+
+  <!-- ░░ LIGHTBOX ░░ -->
+  <div class="lightbox" id="lightbox"><img id="lightboxImg" src="" alt="" /><button class="lightbox__close" id="lightboxClose" aria-label="Close">✕</button></div>
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+  <!-- App -->
+  <script type="module" src="js/quantum-scene.js"></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
