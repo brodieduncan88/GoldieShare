@@ -137,8 +137,8 @@
     /* STATEMENT word-by-word reveal */
     const mWords = document.querySelectorAll('.statement__text .word');
     if(mWords.length){
-      gsap.to(mWords, { opacity:1, stagger:0.04, ease:'none',
-        scrollTrigger:{ trigger:'.statement__text', start:'top 78%', end:'bottom 62%', scrub:true } });
+      gsap.fromTo(mWords, { opacity:0.2 }, { opacity:1, stagger:0.04, ease:'none',
+        scrollTrigger:{ trigger:'.statement__text', start:'top 80%', end:'bottom 65%', scrub:true } });
     }
     gsap.from('.statement__cta', { y:30, opacity:0, duration:1,
       scrollTrigger:{ trigger:'.statement__cta', start:'top 88%' } });
@@ -251,16 +251,20 @@
     const next = document.getElementById('appsNext');
     if(!vp || !track) return;
     const card = track.querySelector('.appcard');
+    const prog = document.getElementById('appsProgress');
     const step = ()=> card ? card.getBoundingClientRect().width + 22 : 360;
-    const updateBtns = ()=>{
-      if(!prev||!next) return;
-      prev.disabled = vp.scrollLeft <= 4;
-      next.disabled = vp.scrollLeft >= vp.scrollWidth - vp.clientWidth - 4;
+    const update = ()=>{
+      const max = vp.scrollWidth - vp.clientWidth;
+      if(prev && next){ prev.disabled = vp.scrollLeft <= 4; next.disabled = vp.scrollLeft >= max - 4; }
+      if(prog){ const pct = max>0 ? (vp.scrollLeft/max) : 0;
+        // fill grows from ~18% to 100% as you scroll across
+        prog.style.setProperty('--p', (18 + pct*82) + '%'); }
     };
     prev && prev.addEventListener('click', ()=> vp.scrollBy({ left:-step(), behavior:'smooth' }));
     next && next.addEventListener('click', ()=> vp.scrollBy({ left:step(), behavior:'smooth' }));
-    vp.addEventListener('scroll', updateBtns, { passive:true });
-    updateBtns();
+    vp.addEventListener('scroll', update, { passive:true });
+    window.addEventListener('resize', update);
+    update();
 
     // drag to scroll
     let down=false, startX=0, startScroll=0, moved=false;

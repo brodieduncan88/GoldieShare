@@ -100,7 +100,7 @@
           <span class="line"><span>made</span></span>
           <span class="line"><span><em>visible.</em></span></span>
         </h1>
-        <p class="hero__sub">An erasure-biased heavy-fluxonium coprocessor — encoding logic in |0⟩–|2⟩ and heralding the |1⟩ erasure manifold.</p>
+        <p class="hero__sub">A proposed erasure-biased heavy-fluxonium architecture — encoding logic in |0⟩–|2⟩ and heralding the |1⟩ erasure manifold. A TRL-2 research roadmap.</p>
         <div class="hero__cta">
           <a href="#technology" class="btn-arrow btn-arrow--light" data-cursor="hover">
             <span class="btn-arrow__box">↳</span>
@@ -130,13 +130,26 @@
       </div>
     </section>
 
+    <!-- ░░░░ TRL DISCLAIMER ░░░░ -->
+    <section class="trl" id="trl" aria-label="Technology readiness disclaimer">
+      <div class="trl__inner">
+        <span class="trl__badge">TRL-2</span>
+        <p class="trl__text">
+          <strong>QMHP-CoPro is a TRL-2 research architecture.</strong> It is not presented as an
+          operating quantum computer. This site documents the proposed architecture, validation
+          gates, hardware assumptions and failure paths required to test the thesis.
+        </p>
+      </div>
+    </section>
+
     <!-- ░░░░ STATEMENT ░░░░ -->
     <section class="statement" id="statement">
       <div class="statement__tag">The thesis behind the architecture</div>
       <h2 class="statement__text">
-        A half-flux heavy-fluxonium qubit lives at an awkward level structure. We are testing
-        whether that awkwardness becomes a useful, erasure-aware primitive — where hidden
-        relaxation and leakage are <em>made visible</em>, heralded, and pivot-protected.
+        A half-flux heavy-fluxonium qubit has an awkward level structure. QMHP-CoPro tests
+        whether that awkwardness can become a useful erasure-aware primitive: encode in |0⟩ and
+        |2⟩, route dominant relaxation and leakage into |1⟩, herald the event, and let the
+        decoder treat it as <em>located information</em> rather than hidden damage.
       </h2>
       <div class="statement__cta">
         <a href="#technology" class="btn-arrow" data-cursor="hover">
@@ -152,7 +165,7 @@
       <div class="define__inner">
         <div class="define__rule"></div>
         <div class="define__name">QMHP·CoPro<span class="define__ipa">\ kyü-em-āch-pē · kō-prō \</span></div>
-        <p class="define__body">Quantum Modular Heavy-fluxonium Co-Processor — a TRL-2 architecture roadmap proposing a dark-state CZ gate and a Phase-1 dual-rail cat-state interconnect, operated at 15–20 mK.</p>
+        <p class="define__body">Quantum Modular Heavy-fluxonium Co-Processor — a TRL-2 architecture roadmap proposing a dark-state CZ gate and a Phase-1 dual-rail cat-state interconnect, specified to operate at 15–20 mK.</p>
       </div>
     </section>
 
@@ -181,7 +194,7 @@
         </article>
         <article class="stat" data-cursor="hover">
           <div class="stat__num"><span class="count" data-target="15" data-decimals="0">0</span><span class="stat__exp">–20 mK</span></div>
-          <h3 class="stat__label">Operating temperature</h3>
+          <h3 class="stat__label">Design operating point</h3>
           <p class="stat__desc">Five-stage pulse-tube dilution platform: 300 K → 50 K → 4 K → 700 mK → 100 mK → mixing chamber.</p>
         </article>
       </div>
@@ -198,7 +211,7 @@
       <div class="tech__layout">
         <div class="tech__media" data-parallax-media>
           <img src="assets/img/system-integration.jpg" alt="QMHP-CoPro full system integration: cryogenic system, control electronics, and quantum processor unit" loading="lazy" />
-          <div class="tech__media-cap">Full-system integration — Distance-3 surface-code logical tile</div>
+          <div class="tech__media-cap">Proposed system integration — distance-3 surface-code logical tile</div>
         </div>
 
         <div class="tech__cards">
@@ -241,7 +254,7 @@
         <div class="cryo__rail">
           <div class="section-head section-head--light">
             <span class="section-head__idx">03</span>
-            <h2 class="section-head__title">Five stages to near&#8209;zero</h2>
+            <h2 class="section-head__title">Five stages toward the mixing&nbsp;chamber</h2>
           </div>
           <ol class="cryo__stages" id="cryoStages">
             <li class="cstage" data-temp="300 K" data-name="Room-temperature electronics">
@@ -284,7 +297,7 @@
       <div class="qpu__layout">
         <figure class="qpu__chip" data-cursor="hover">
           <img src="assets/img/fullsystem-labeled.jpg" alt="QMHP-CoPro full system, labeled" loading="lazy" />
-          <figcaption>QMHP·CoPro v6.2 — labeled full system</figcaption>
+          <figcaption>QMHP·CoPro v6.2 — reference architecture layout</figcaption>
         </figure>
         <ul class="qpu__specs">
           <li><span class="qpu__k">9</span><div><h3>Heavy-fluxonium data qubits</h3><p>Josephson-junction-array superinductors set the heavy-fluxonium regime for leakage suppression and coherence.</p></div></li>
@@ -405,6 +418,7 @@
           <button class="apps__btn" id="appsNext" aria-label="Next" data-cursor="hover">→</button>
         </div>
       </div>
+      <div class="apps__hint"><span>Drag, scroll or use the arrows</span></div>
       <div class="apps__viewport" id="appsViewport">
         <div class="apps__track" id="appsTrack">
           <article class="appcard" data-cursor="hover">
@@ -420,7 +434,7 @@
             <img src="assets/img/cryostat-hero.jpg" alt="Cryogenic platform" loading="lazy" />
             <div class="appcard__body">
               <span class="appcard__label">Cryogenic Co-Design</span>
-              <h3>A five-stage 15–20 mK platform built to scale</h3>
+              <h3>A five-stage 15–20 mK platform designed to scale</h3>
               <p>Signal chain, heat budget and wiring are drawn together — from the 300 K rack down to the gold-mounted processor on the mixing chamber.</p>
               <a href="#architecture" class="appcard__link" data-cursor="hover">↳ See the cryostat</a>
             </div>
@@ -445,6 +459,7 @@
           </article>
         </div>
       </div>
+      <div class="apps__progress"><span id="appsProgress"></span></div>
     </section>
 
     <!-- ░░░░ GALLERY ░░░░ -->
@@ -460,7 +475,7 @@
         </figure>
         <figure class="gitem" data-cursor="zoom" data-src="assets/img/system-integration.jpg">
           <img src="assets/img/system-integration-sm.jpg" alt="Full system integration diagram" loading="lazy" />
-          <figcaption><span>02</span>System integration</figcaption>
+          <figcaption><span>02</span>Reference architecture</figcaption>
         </figure>
         <figure class="gitem" data-cursor="zoom" data-src="assets/img/fullsystem-labeled.jpg">
           <img src="assets/img/fullsystem-labeled-sm.jpg" alt="Labeled full system" loading="lazy" />
