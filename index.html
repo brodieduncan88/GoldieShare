@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QMHP·CoPro — Erasure-Biased Heavy-Fluxonium Quantum Coprocessor</title>
   <meta name="description" content="QMHP-CoPro is a TRL-2 architecture roadmap for an erasure-biased heavy-fluxonium superconducting quantum coprocessor, with a proposed dark-state CZ gate and a Phase-1 dual-rail cat-state interconnect." />
-  <meta name="theme-color" content="#05060a" />
+  <meta name="theme-color" content="#9BB9DB" />
 
   <meta property="og:title" content="QMHP·CoPro — Heavy-Fluxonium Quantum Coprocessor" />
   <meta property="og:description" content="An erasure-biased heavy-fluxonium superconducting coprocessor. Distance-3 surface-code logic, dark-state CZ, and a 15–20 mK cryogenic platform." />
@@ -14,7 +14,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 
   <script type="importmap">
@@ -52,7 +52,12 @@
   <!-- ░░ NAV ░░ -->
   <header class="nav" id="nav">
     <a href="#top" class="nav__brand" data-cursor="hover">
-      <span class="nav__glyph">⎔</span>
+      <svg class="nav__glyph" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <ellipse cx="16" cy="16" rx="14" ry="6.2" stroke="currentColor" stroke-width="1.4" opacity=".35"/>
+        <ellipse cx="16" cy="16" rx="14" ry="10.5" stroke="currentColor" stroke-width="1.4" opacity=".55"/>
+        <ellipse cx="16" cy="16" rx="14" ry="14" stroke="currentColor" stroke-width="1.4" opacity=".8"/>
+        <circle cx="16" cy="16" r="2.4" fill="currentColor"/>
+      </svg>
       <span class="nav__name">QMHP<span class="dot">·</span>CoPro</span>
     </a>
     <nav class="nav__links">
@@ -85,25 +90,27 @@
     <!-- ░░░░ HERO ░░░░ -->
     <section class="hero" id="hero">
       <canvas id="quantum-canvas" class="hero__canvas"></canvas>
-      <div class="hero__veil"></div>
 
-      <div class="hero__content">
+      <div class="hero__copy">
         <div class="hero__eyebrow"><span></span>Heavy-Fluxonium Superconducting Coprocessor</div>
         <h1 class="hero__title">
-          <span class="line"><span>The qubit that</span></span>
-          <span class="line"><span>knows when it</span></span>
-          <span class="line"><span><em>erases itself.</em></span></span>
+          <span class="line"><span>Error,</span></span>
+          <span class="line"><span>made</span></span>
+          <span class="line"><span><em>visible.</em></span></span>
         </h1>
-        <p class="hero__lede">
-          QMHP·CoPro is an erasure-biased heavy-fluxonium architecture that encodes logic in
-          <span class="hl">|0⟩–|2⟩</span> and converts dominant errors into a heralded
-          <span class="hl">|1⟩</span> erasure manifold — turning leakage into information.
-        </p>
-        <div class="hero__actions">
-          <a href="#technology" class="btn btn--primary" data-cursor="hover">Explore the architecture <i>→</i></a>
-          <a href="#qpu" class="btn btn--ghost" data-cursor="hover">See the processor</a>
+        <p class="hero__sub">An erasure-biased heavy-fluxonium coprocessor — encoding logic in |0⟩–|2⟩ and heralding the |1⟩ erasure manifold.</p>
+        <div class="hero__cta">
+          <a href="#technology" class="btn-arrow btn-arrow--light" data-cursor="hover">
+            <span class="btn-arrow__box">↳</span>
+            <span class="btn-arrow__label">Explore the technology</span>
+          </a>
         </div>
       </div>
+
+      <a href="#statement" class="hero__scroll" data-cursor="hover">
+        <span>Scroll</span>
+        <span class="hero__scroll-line"></span>
+      </a>
 
       <div class="hero__ticker" id="ticker">
         <div class="ticker__track">
@@ -119,24 +126,31 @@
           <span>DUAL-RAIL CAT INTERCONNECT</span><span class="sep">✦</span>
         </div>
       </div>
-
-      <a href="#manifesto" class="hero__scroll" data-cursor="hover">
-        <span>Scroll</span>
-        <span class="hero__scroll-line"></span>
-      </a>
     </section>
 
-    <!-- ░░░░ MANIFESTO ░░░░ -->
-    <section class="manifesto" id="manifesto">
-      <div class="manifesto__tag">[ 00 — Thesis ]</div>
-      <h2 class="manifesto__text reveal-words">
-        A half-flux heavy-fluxonium qubit lives at an awkward level structure.
-        We are testing whether that awkwardness becomes a useful, erasure-aware
-        primitive — where hidden relaxation and leakage are <em>made visible</em>,
-        heralded, and pivot-protected.
+    <!-- ░░░░ STATEMENT ░░░░ -->
+    <section class="statement" id="statement">
+      <div class="statement__tag">The thesis behind the architecture</div>
+      <h2 class="statement__text">
+        A half-flux heavy-fluxonium qubit lives at an awkward level structure. We are testing
+        whether that awkwardness becomes a useful, erasure-aware primitive — where hidden
+        relaxation and leakage are <em>made visible</em>, heralded, and pivot-protected.
       </h2>
-      <div class="manifesto__foot">
-        <p>This is a TRL-2 architecture roadmap with explicit acceptance criteria, quantified risks, and pivot triggers. It is not experimental proof — every projection remains conditional on the validation-gate chain.</p>
+      <div class="statement__cta">
+        <a href="#technology" class="btn-arrow" data-cursor="hover">
+          <span class="btn-arrow__box">↳</span>
+          <span class="btn-arrow__label">Discover the approach</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ░░░░ DEFINITION (dark photo band) ░░░░ -->
+    <section class="define" id="define">
+      <div class="define__bg"><img src="assets/img/cryostat-hero.jpg" alt="QMHP-CoPro dilution refrigerator in the laboratory" loading="lazy" /></div>
+      <div class="define__inner">
+        <div class="define__rule"></div>
+        <div class="define__name">QMHP·CoPro<span class="define__ipa">\ kyü-em-āch-pē · kō-prō \</span></div>
+        <p class="define__body">Quantum Modular Heavy-fluxonium Co-Processor — a TRL-2 architecture roadmap proposing a dark-state CZ gate and a Phase-1 dual-rail cat-state interconnect, operated at 15–20 mK.</p>
       </div>
     </section>
 
@@ -433,7 +447,10 @@
         <h2 class="contact__title">Bring the<br/><em>cold logic</em> forward.</h2>
         <p class="contact__sub">For technical review, partnership, investment or research collaboration on the QMHP·CoPro program.</p>
         <div class="contact__actions">
-          <a href="mailto:research@qmhp-copro.tech" class="btn btn--primary btn--lg" data-cursor="hover">research@qmhp-copro.tech <i>→</i></a>
+          <a href="mailto:research@qmhp-copro.tech" class="btn-arrow" data-cursor="hover">
+            <span class="btn-arrow__box">↳</span>
+            <span class="btn-arrow__label">research@qmhp-copro.tech</span>
+          </a>
         </div>
         <div class="contact__grid">
           <div><span class="contact__k">Partnerships</span><p>Vendor validation & fabrication review</p></div>

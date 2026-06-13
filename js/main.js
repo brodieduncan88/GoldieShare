@@ -64,7 +64,10 @@
 
   /* ─── NAV scroll state + mobile menu ────────────────── */
   const nav = document.getElementById('nav');
-  const onScrollNav = ()=>{ nav.classList.toggle('is-scrolled', window.scrollY>40); };
+  const onScrollNav = ()=>{
+    nav.classList.toggle('is-scrolled', window.scrollY>40);
+    nav.classList.toggle('on-dark', window.scrollY < 80);
+  };
   window.addEventListener('scroll', onScrollNav); onScrollNav();
 
   const burger = document.getElementById('burger');
@@ -101,9 +104,9 @@
     /* HERO entrance */
     const tl = gsap.timeline({ defaults:{ ease:'power4.out' } });
     tl.from('.hero__eyebrow', { y:24, opacity:0, duration:.9 })
-      .from('.hero__title .line>span', { yPercent:115, duration:1.1, stagger:.12 }, '-=.5')
-      .from('.hero__lede', { y:24, opacity:0, duration:.9 }, '-=.7')
-      .from('.hero__actions', { y:24, opacity:0, duration:.8 }, '-=.7')
+      .from('.hero__title .line>span', { yPercent:115, duration:1.2, stagger:.12 }, '-=.5')
+      .from('.hero__sub', { y:24, opacity:0, duration:.9 }, '-=.8')
+      .from('.hero__cta', { y:24, opacity:0, duration:.8 }, '-=.7')
       .from('.hero__ticker', { y:30, opacity:0, duration:.8 }, '-=.6')
       .from('.hero__scroll', { opacity:0, duration:.8 }, '-=.5');
 
@@ -131,14 +134,20 @@
         });
       });
 
-    /* MANIFESTO word-by-word reveal */
-    const mWords = document.querySelectorAll('.manifesto__text .word');
+    /* STATEMENT word-by-word reveal */
+    const mWords = document.querySelectorAll('.statement__text .word');
     if(mWords.length){
       gsap.to(mWords, { opacity:1, stagger:0.04, ease:'none',
-        scrollTrigger:{ trigger:'.manifesto__text', start:'top 75%', end:'bottom 60%', scrub:true } });
+        scrollTrigger:{ trigger:'.statement__text', start:'top 78%', end:'bottom 62%', scrub:true } });
     }
-    gsap.from('.manifesto__foot', { y:40, opacity:0, duration:1,
-      scrollTrigger:{ trigger:'.manifesto__foot', start:'top 85%' } });
+    gsap.from('.statement__cta', { y:30, opacity:0, duration:1,
+      scrollTrigger:{ trigger:'.statement__cta', start:'top 88%' } });
+
+    /* DEFINITION band parallax + reveal */
+    gsap.from('.define__inner > *', { y:40, opacity:0, duration:1, stagger:.12, ease:'power3.out',
+      scrollTrigger:{ trigger:'.define', start:'top 60%' } });
+    gsap.fromTo('.define__bg img', { yPercent:-10, scale:1.1 }, { yPercent:10, ease:'none',
+      scrollTrigger:{ trigger:'.define', start:'top bottom', end:'bottom top', scrub:true } });
 
     /* STAT counters */
     document.querySelectorAll('.count').forEach(el=>{
@@ -211,9 +220,9 @@
     ScrollTrigger.refresh();
   }
 
-  /* ─── split manifesto into words (for scrub reveal) ── */
-  (function splitManifesto(){
-    const el = document.querySelector('.manifesto__text');
+  /* ─── split statement into words (for scrub reveal) ── */
+  (function splitStatement(){
+    const el = document.querySelector('.statement__text');
     if(!el) return;
     const walk = (node)=>{
       const kids = Array.from(node.childNodes);
@@ -226,8 +235,8 @@
           });
           node.replaceChild(frag, n);
         } else if(n.nodeType===1 && n.tagName==='EM'){
-          const s=document.createElement('span'); s.className='word'; s.style.color='var(--gold)';
-          s.textContent=n.textContent; node.replaceChild(s, n);
+          const s=document.createElement('span'); s.className='word'; s.style.fontStyle='italic';
+          s.style.color='var(--accent)'; s.textContent=n.textContent; node.replaceChild(s, n);
         }
       });
     };

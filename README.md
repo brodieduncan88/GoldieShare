@@ -6,15 +6,17 @@ falsifiable **TRL-2 architecture roadmap**: distance-3 surface-code logic, a pro
 dark-state CZ gate, a five-stage 15–20 mK cryogenic platform, and a Phase-1 dual-rail
 cat-state interconnect.
 
-The structure and production polish follow the premium deep-tech startup pattern of
-[zetta-joule.com](https://zetta-joule.com); the content is original and grounded entirely
+The visual language — soft blue-to-white gradients, generous white space, light serif
+display type, large render/photography, dark full-bleed photographic bands, and the
+arrow-in-a-box call-to-action — follows the clean, architectural pattern of
+[zetta-joule.com](https://zetta-joule.com). All content is original and grounded entirely
 in the QMHP·CoPro whitepaper (v1.3.1) and system imagery.
 
 ## Stack
-- **Three.js** (r160) — hero "quantum core" with a stacked golden cryostat, a glowing
-  qubit lattice, an ambient particle field and `UnrealBloomPass` post-processing; a live
-  distance-3 surface-code lattice in the processor section; a particle field behind the
-  contact CTA.
+- **Three.js** (r160) — a metallic "cold column" hero render (chrome/gold cryostat rings and
+  rod cluster rising from the bottom, with a `RoomEnvironment` for real metal reflections and
+  a glowing qubit lattice at its base); a live distance-3 surface-code lattice in the processor
+  section; and a constellation field behind the contact CTA.
 - **GSAP + ScrollTrigger** — hero reveal, scrubbed manifesto, animated stat counters,
   a pinned five-stage cryostat stepper, and a pinned horizontal validation-gate chain.
 - **Lenis** — smooth scrolling, integrated with ScrollTrigger.
