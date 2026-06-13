@@ -126,7 +126,7 @@
         scrollTrigger:{ trigger:el, start:'top 82%' } });
     });
 
-    ['.stat','.tcard','.ecard','.appcard','.qpu__specs li','.gitem','.contact__grid > div','.about__chips .chip']
+    ['.stat','.tcard','.ecard','.appcard','.qpu__specs li','.gitem','.bp-feature','.bp-item','.contact__grid > div','.about__chips .chip']
       .forEach(sel=>{
         gsap.utils.toArray(sel).forEach((el,i)=>{
           gsap.from(el, { y:46, opacity:0, duration:.9, ease:'power3.out', delay:(i%4)*0.06,
