@@ -1,606 +1,332 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dusk">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QMHP·CoPro — Erasure-Biased Heavy-Fluxonium Quantum Coprocessor</title>
-  <meta name="description" content="QMHP-CoPro is a TRL-2 architecture roadmap for an erasure-biased heavy-fluxonium superconducting quantum coprocessor, with a proposed dark-state CZ gate and a Phase-1 dual-rail cat-state interconnect." />
-  <meta name="theme-color" content="#9BB9DB" />
-
-  <meta property="og:title" content="QMHP·CoPro — Heavy-Fluxonium Quantum Coprocessor" />
-  <meta property="og:description" content="An erasure-biased heavy-fluxonium superconducting coprocessor. Distance-3 surface-code logic, dark-state CZ, and a 15–20 mK cryogenic platform." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/img/cryostat-hero.jpg" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
-
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-    }
-  }
-  </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nocturne — Discover what your dinner is doing to your sleep</title>
+<meta name="description" content="Photograph what you eat and drink before bed. Rate your sleep when you wake up. Nocturne uncovers the patterns between your evening habits, your sleep quality and your dreams.">
+<meta name="theme-color" content="#160f18">
+<meta property="og:title" content="Nocturne — Discover what your dinner is doing to your sleep">
+<meta property="og:description" content="Photograph dinner. Sleep. Rate it. Learn your own patterns.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23160f18'/%3E%3Cpath d='M21.5 20.4A8 8 0 0 1 12.6 8.2a8.6 8.6 0 1 0 8.9 12.2Z' fill='%23f0b46a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..500&family=Inter:wght@300..700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..500&family=Inter:wght@300..700&display=swap"></noscript>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- ░░ PRELOADER ░░ -->
-  <div class="preloader" id="preloader">
-    <div class="preloader__inner">
-      <div class="preloader__mark">
-        <span class="ket">|0⟩</span><span class="ket ket--mid">|1⟩</span><span class="ket">|2⟩</span>
+<!-- ═══════════ sky / lighting layers ═══════════ -->
+<div class="sky" aria-hidden="true">
+  <div class="sky__layer" data-sky="dusk"></div>
+  <div class="sky__layer" data-sky="night"><div class="stars"></div></div>
+  <div class="sky__layer" data-sky="dawn"></div>
+  <div class="sky__layer" data-sky="day"></div>
+  <div class="sky__grain"></div>
+</div>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ═══════════ nav ═══════════ -->
+<header class="nav" id="top">
+  <a class="nav__brand" href="#top" aria-label="Nocturne, home">
+    <span class="nav__mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M20 14.6A8.6 8.6 0 0 1 9.4 4 9 9 0 1 0 20 14.6Z"/><circle cx="16.2" cy="6.4" r="1.3"/></svg>
+    </span>
+    <span class="nav__name">Nocturne</span>
+  </a>
+  <nav class="nav__links" aria-label="Primary">
+    <a href="#capture">How it works</a>
+    <a href="#report">Your week</a>
+    <a href="#dreams">Dreams</a>
+    <a href="#demo">Try a night</a>
+    <a href="#privacy">Privacy</a>
+  </nav>
+  <a class="btn btn--sm" href="#demo">Start tracking</a>
+</header>
+
+<main id="main">
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero" data-scene="dusk">
+  <div class="hero__inner wrap">
+    <div class="hero__copy">
+      <p class="eyebrow reveal">Evening intelligence for sleep</p>
+      <h1 class="reveal">Discover what your <em>dinner</em> is doing to your <em>sleep</em>.</h1>
+      <p class="lede reveal">Take a photo of what you eat and drink before bed. Rate your sleep when you wake up. Over time, AI helps uncover patterns between your evening habits, sleep quality and dreams.</p>
+      <div class="hero__cta reveal">
+        <a class="btn" href="#demo">Start Tracking</a>
+        <a class="btn btn--ghost" href="#capture">See How It Works<span class="btn__arr" aria-hidden="true">→</span></a>
       </div>
-      <div class="preloader__bar"><span id="preloaderFill"></span></div>
-      <div class="preloader__meta">
-        <span>QMHP·CoPro</span>
-        <span id="preloaderPct">0%</span>
-      </div>
-      <div class="preloader__status" id="preloaderStatus">Cooling mixing chamber…</div>
+      <ul class="hero__micro reveal">
+        <li>No calorie counting</li>
+        <li>No food diary</li>
+        <li>About 8 seconds a night</li>
+      </ul>
+    </div>
+
+    <div class="hero__stage">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div data-mount="hero-phone"></div>
+      <ol class="journey" data-journey aria-label="The nightly journey">
+        <li data-j="0"><span class="journey__dot"></span>Dinner</li>
+        <li data-j="1"><span class="journey__dot"></span>AI analysis</li>
+        <li data-j="2"><span class="journey__dot"></span>Sleep</li>
+        <li data-j="3"><span class="journey__dot"></span>Morning score</li>
+        <li data-j="4"><span class="journey__dot"></span>Insights</li>
+      </ol>
     </div>
   </div>
+  <div class="hero__scroll" aria-hidden="true"><span></span>Scroll</div>
+</section>
 
-  <!-- ░░ CUSTOM CURSOR ░░ -->
-  <div class="cursor" id="cursor"><div class="cursor__dot"></div><div class="cursor__ring"></div></div>
-
-  <!-- ░░ GRAIN + SCANLINE OVERLAY ░░ -->
-  <div class="fx-grain" aria-hidden="true"></div>
-
-  <!-- ░░ NAV ░░ -->
-  <header class="nav" id="nav">
-    <a href="#top" class="nav__brand" data-cursor="hover">
-      <svg class="nav__glyph" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <ellipse cx="16" cy="16" rx="14" ry="6.2" stroke="currentColor" stroke-width="1.4" opacity=".35"/>
-        <ellipse cx="16" cy="16" rx="14" ry="10.5" stroke="currentColor" stroke-width="1.4" opacity=".55"/>
-        <ellipse cx="16" cy="16" rx="14" ry="14" stroke="currentColor" stroke-width="1.4" opacity=".8"/>
-        <circle cx="16" cy="16" r="2.4" fill="currentColor"/>
-      </svg>
-      <span class="nav__name">QMHP<span class="dot">·</span>CoPro</span>
-    </a>
-    <nav class="nav__links">
-      <a href="#technology" data-cursor="hover">Technology</a>
-      <a href="#architecture" data-cursor="hover">Architecture</a>
-      <a href="#qpu" data-cursor="hover">Processor</a>
-      <a href="#validation" data-cursor="hover">Validation</a>
-      <a href="#blueprints" data-cursor="hover">Drawings</a>
-      <a href="#edge" data-cursor="hover">Our Edge</a>
-      <a href="#about" data-cursor="hover">About</a>
-    </nav>
-    <a href="#contact" class="nav__cta" data-cursor="hover">Contact</a>
-    <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span></button>
-  </header>
-
-  <!-- ░░ MOBILE MENU ░░ -->
-  <div class="menu" id="menu">
-    <nav class="menu__links">
-      <a href="#technology" data-cursor="hover"><span>01</span>Technology</a>
-      <a href="#architecture" data-cursor="hover"><span>02</span>Architecture</a>
-      <a href="#qpu" data-cursor="hover"><span>03</span>Processor</a>
-      <a href="#validation" data-cursor="hover"><span>04</span>Validation</a>
-      <a href="#blueprints" data-cursor="hover"><span>05</span>Drawings</a>
-      <a href="#edge" data-cursor="hover"><span>06</span>Our Edge</a>
-      <a href="#about" data-cursor="hover"><span>07</span>About</a>
-      <a href="#contact" data-cursor="hover"><span>08</span>Contact</a>
-    </nav>
+<!-- ═══════════ FOUR MOMENTS ═══════════ -->
+<section class="moments" data-scene="dusk">
+  <div class="wrap">
+    <h2 class="h-editorial reveal">Four moments.<br><span class="dim">That is the entire product.</span></h2>
+    <ol class="moments__rail">
+      <li class="moment reveal" data-moment>
+        <span class="moment__no">01</span>
+        <h3>Photograph</h3>
+        <p>One picture of your plate. And of anything else before bed.</p>
+        <div class="moment__ico" data-ico="camera"></div>
+      </li>
+      <li class="moment reveal" data-moment>
+        <span class="moment__no">02</span>
+        <h3>Sleep</h3>
+        <p>Nocturne goes quiet. Nothing to wear, nothing to charge.</p>
+        <div class="moment__ico" data-ico="moon"></div>
+      </li>
+      <li class="moment reveal" data-moment>
+        <span class="moment__no">03</span>
+        <h3>Rate</h3>
+        <p>In the morning: one number, and what you remember of your dreams.</p>
+        <div class="moment__ico" data-ico="sun"></div>
+      </li>
+      <li class="moment reveal" data-moment>
+        <span class="moment__no">04</span>
+        <h3>Learn</h3>
+        <p>Night after night, your own correlations surface.</p>
+        <div class="moment__ico" data-ico="chart"></div>
+      </li>
+    </ol>
   </div>
+</section>
 
-  <main id="top">
-
-    <!-- ░░░░ HERO ░░░░ -->
-    <section class="hero" id="hero">
-      <canvas id="quantum-canvas" class="hero__canvas"></canvas>
-
-      <div class="hero__copy">
-        <div class="hero__eyebrow"><span></span>Heavy-Fluxonium Superconducting Coprocessor</div>
-        <h1 class="hero__title">
-          <span class="line"><span>Error,</span></span>
-          <span class="line"><span>made</span></span>
-          <span class="line"><span><em>visible.</em></span></span>
-        </h1>
-        <p class="hero__sub">A proposed erasure-biased heavy-fluxonium architecture — encoding logic in |0⟩–|2⟩ and heralding the |1⟩ erasure manifold. A TRL-2 research roadmap.</p>
-        <div class="hero__cta">
-          <a href="#technology" class="btn-arrow btn-arrow--light" data-cursor="hover">
-            <span class="btn-arrow__box">↳</span>
-            <span class="btn-arrow__label">Explore the technology</span>
-          </a>
-        </div>
-      </div>
-
-      <a href="#statement" class="hero__scroll" data-cursor="hover">
-        <span>Scroll</span>
-        <span class="hero__scroll-line"></span>
-      </a>
-
-      <div class="hero__ticker" id="ticker">
-        <div class="ticker__track">
-          <span>DARK-STATE CZ GATE</span><span class="sep">✦</span>
-          <span>DISTANCE-3 SURFACE CODE</span><span class="sep">✦</span>
-          <span>15–20 mK MIXING CHAMBER</span><span class="sep">✦</span>
-          <span>ERASURE-BIASED LOGIC</span><span class="sep">✦</span>
-          <span>DUAL-RAIL CAT INTERCONNECT</span><span class="sep">✦</span>
-          <span>DARK-STATE CZ GATE</span><span class="sep">✦</span>
-          <span>DISTANCE-3 SURFACE CODE</span><span class="sep">✦</span>
-          <span>15–20 mK MIXING CHAMBER</span><span class="sep">✦</span>
-          <span>ERASURE-BIASED LOGIC</span><span class="sep">✦</span>
-          <span>DUAL-RAIL CAT INTERCONNECT</span><span class="sep">✦</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ░░░░ TRL DISCLAIMER ░░░░ -->
-    <section class="trl" id="trl" aria-label="Technology readiness disclaimer">
-      <div class="trl__inner">
-        <span class="trl__badge">TRL-2</span>
-        <p class="trl__text">
-          <strong>QMHP-CoPro is a TRL-2 research architecture.</strong> It is not presented as an
-          operating quantum computer. This site documents the proposed architecture, validation
-          gates, hardware assumptions and failure paths required to test the thesis.
-        </p>
-      </div>
-    </section>
-
-    <!-- ░░░░ STATEMENT ░░░░ -->
-    <section class="statement" id="statement">
-      <div class="statement__tag">The thesis behind the architecture</div>
-      <h2 class="statement__text">
-        A half-flux heavy-fluxonium qubit has an awkward level structure. QMHP-CoPro tests
-        whether that awkwardness can become a useful erasure-aware primitive: encode in |0⟩ and
-        |2⟩, route dominant relaxation and leakage into |1⟩, herald the event, and let the
-        decoder treat it as <em>located information</em> rather than hidden damage.
-      </h2>
-      <div class="statement__cta">
-        <a href="#technology" class="btn-arrow" data-cursor="hover">
-          <span class="btn-arrow__box">↳</span>
-          <span class="btn-arrow__label">Discover the approach</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- ░░░░ DEFINITION (dark photo band) ░░░░ -->
-    <section class="define" id="define">
-      <div class="define__bg"><img src="assets/img/cryostat-hero.jpg" alt="QMHP-CoPro dilution refrigerator in the laboratory" loading="lazy" /></div>
-      <div class="define__inner">
-        <div class="define__rule"></div>
-        <div class="define__name">QMHP·CoPro<span class="define__ipa">\ kyü-em-āch-pē · kō-prō \</span></div>
-        <p class="define__body">Quantum Modular Heavy-fluxonium Co-Processor — a TRL-2 architecture roadmap proposing a dark-state CZ gate and a Phase-1 dual-rail cat-state interconnect, specified to operate at 15–20 mK.</p>
-      </div>
-    </section>
-
-    <!-- ░░░░ HEADLINE QUANTITIES ░░░░ -->
-    <section class="stats" id="stats">
-      <div class="section-head">
-        <span class="section-head__idx">01</span>
-        <h2 class="section-head__title">Headline quantities</h2>
-        <p class="section-head__sub">Proposed and internally derived. Conditional until gates P3, P5 and P4 pass experimental validation.</p>
-      </div>
-      <div class="stats__grid">
-        <article class="stat" data-cursor="hover">
-          <div class="stat__num"><span class="count" data-target="7.35">0.00</span><span class="stat__exp">×10⁻³</span></div>
-          <h3 class="stat__label">Error budget</h3>
-          <p class="stat__desc">Unlocalized error per syndrome-extraction round against a ~1×10⁻² accounting ceiling — a 1.36× margin on the nominal allocation.</p>
-        </article>
-        <article class="stat" data-cursor="hover">
-          <div class="stat__num"><span class="count" data-target="6.3">0.0</span><span class="stat__exp">×10⁻⁴</span></div>
-          <h3 class="stat__label">Dark-state CZ leakage</h3>
-          <p class="stat__desc">Inner-window leakage estimate δF<sub>CZ</sub>. Device-level CZ infidelity projected at 7.6–8.6×10⁻³ before P4 validation.</p>
-        </article>
-        <article class="stat" data-cursor="hover">
-          <div class="stat__num"><span class="count" data-target="3" data-decimals="0">0</span><span class="stat__exp">distance</span></div>
-          <h3 class="stat__label">Surface-code tile</h3>
-          <p class="stat__desc">A distance-3 logical tile: 9 data qubits, 8 stabilizers (X1–X4, Z1–Z4), with dedicated erasure-flag readout.</p>
-        </article>
-        <article class="stat" data-cursor="hover">
-          <div class="stat__num"><span class="count" data-target="15" data-decimals="0">0</span><span class="stat__exp">–20 mK</span></div>
-          <h3 class="stat__label">Design operating point</h3>
-          <p class="stat__desc">Five-stage pulse-tube dilution platform: 300 K → 50 K → 4 K → 700 mK → 100 mK → mixing chamber.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ░░░░ TECHNOLOGY ░░░░ -->
-    <section class="tech" id="technology">
-      <div class="section-head">
-        <span class="section-head__idx">02</span>
-        <h2 class="section-head__title">The technology</h2>
-        <p class="section-head__sub">Encode in the outer levels. Herald the middle. Convert error into information.</p>
-      </div>
-
-      <div class="tech__layout">
-        <div class="tech__media" data-parallax-media>
-          <img src="assets/img/system-integration.jpg" alt="QMHP-CoPro full system integration: cryogenic system, control electronics, and quantum processor unit" loading="lazy" />
-          <div class="tech__media-cap">Proposed system integration — distance-3 surface-code logical tile</div>
-        </div>
-
-        <div class="tech__cards">
-          <article class="tcard" data-cursor="hover">
-            <span class="tcard__n">|0⟩ – |2⟩</span>
-            <h3>Computational encoding</h3>
-            <p>Logic is stored in the heavy-fluxonium <strong>|0⟩</strong> and <strong>|2⟩</strong> levels, sidestepping the relaxation-prone first excited state and exploiting the protected half-flux level structure.</p>
-          </article>
-          <article class="tcard" data-cursor="hover">
-            <span class="tcard__n">|1⟩</span>
-            <h3>Erasure manifold</h3>
-            <p>The dominant decay and leakage pathways are routed into <strong>|1⟩</strong>, then read out by dedicated erasure-flag resonators. A detected erasure is a <em>known</em> error location — far cheaper to correct than a silent one.</p>
-          </article>
-          <article class="tcard" data-cursor="hover">
-            <span class="tcard__n">CZ</span>
-            <h3>Dark-state CZ gate</h3>
-            <p>A proposed controlled-Z built on a dark-state interaction with an inner-window leakage estimate of <strong>6.3×10⁻⁴</strong>. The architecture is judged on a falsifiable derivation, not an idealized ceiling.</p>
-          </article>
-          <article class="tcard" data-cursor="hover">
-            <span class="tcard__n">⚯</span>
-            <h3>Dual-rail interconnect</h3>
-            <p>Phase-1 extends the lattice through a <strong>dual-rail cat-state</strong> photonic interconnect — a separate ledger validated as infrastructure, never folded into inherited success claims.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ░░░░ ARCHITECTURE — PINNED CRYOSTAT ░░░░ -->
-    <section class="cryo" id="architecture">
-      <div class="cryo__sticky">
-        <div class="cryo__visual">
-          <img src="assets/img/cryostat-hero.jpg" alt="QMHP-CoPro dilution refrigerator cryostat" class="cryo__img" id="cryoImg" />
-          <div class="cryo__scrim"></div>
-          <div class="cryo__readout">
-            <span class="cryo__readout-k" id="cryoTemp">300 K</span>
-            <span class="cryo__readout-l" id="cryoStageName">Room-temperature electronics</span>
-          </div>
-        </div>
-
-        <div class="cryo__rail">
-          <div class="section-head section-head--light">
-            <span class="section-head__idx">03</span>
-            <h2 class="section-head__title">Five stages toward the mixing&nbsp;chamber</h2>
-          </div>
-          <ol class="cryo__stages" id="cryoStages">
-            <li class="cstage" data-temp="300 K" data-name="Room-temperature electronics">
-              <span class="cstage__k">300 K</span>
-              <div class="cstage__body"><h3>Room temperature</h3><p>A 19-inch RF rack — AWG synthesizers, attenuators, flux-bias sources and classical control servers — drives the chain from outside the fridge.</p></div>
-            </li>
-            <li class="cstage" data-temp="50 K" data-name="Outer thermal shield">
-              <span class="cstage__k">50 K</span>
-              <div class="cstage__body"><h3>Outer shield</h3><p>Pulse-tube first stage and gold-plated copper shield anchor the bulk thermal load and host the first line attenuation.</p></div>
-            </li>
-            <li class="cstage" data-temp="4 K" data-name="Radiation shield · HEMT amplifiers">
-              <span class="cstage__k">4 K</span>
-              <div class="cstage__body"><h3>4 K stage</h3><p>The output line meets its HEMT low-noise amplifiers; input lines carry further calibrated attenuation and IR filtering.</p></div>
-            </li>
-            <li class="cstage" data-temp="700 mK" data-name="Still stage">
-              <span class="cstage__k">700 mK</span>
-              <div class="cstage__body"><h3>Still</h3><p>The dilution unit's still stage continues thermalization of every coax line and microwave component along the chain.</p></div>
-            </li>
-            <li class="cstage" data-temp="100 mK" data-name="Cold plate">
-              <span class="cstage__k">100 mK</span>
-              <div class="cstage__body"><h3>Cold plate</h3><p>Final-stage attenuators, isolators and superconducting wiring stage the signal for the quantum chip below.</p></div>
-            </li>
-            <li class="cstage" data-temp="15–20 mK" data-name="Mixing chamber · Quantum Processor Unit">
-              <span class="cstage__k">15–20 mK</span>
-              <div class="cstage__body"><h3>Mixing chamber</h3><p>The QPU sits on the coldest plate of the machine — a gold-plated copper mount holding the 20 mm sapphire processor in its light-tight enclosure.</p></div>
-            </li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
-    <!-- ░░░░ QPU ░░░░ -->
-    <section class="qpu" id="qpu">
-      <div class="section-head">
-        <span class="section-head__idx">04</span>
-        <h2 class="section-head__title">The Quantum Processor Unit</h2>
-        <p class="section-head__sub">A 20 mm tile of engineered silence — every element placed for manufacturability, scalability and falsifiable test.</p>
-      </div>
-
-      <div class="qpu__layout">
-        <figure class="qpu__chip" data-cursor="hover">
-          <img src="assets/img/fullsystem-labeled.jpg" alt="QMHP-CoPro full system, labeled" loading="lazy" />
-          <figcaption>QMHP·CoPro v6.2 — reference architecture layout</figcaption>
-        </figure>
-        <ul class="qpu__specs">
-          <li><span class="qpu__k">9</span><div><h3>Heavy-fluxonium data qubits</h3><p>Josephson-junction-array superinductors set the heavy-fluxonium regime for leakage suppression and coherence.</p></div></li>
-          <li><span class="qpu__k">8</span><div><h3>Stabilizer qubits</h3><p>Four X-type and four Z-type (X1–X4, Z1–Z4) read the surface-code parity checks of the distance-3 tile.</p></div></li>
-          <li><span class="qpu__k">8</span><div><h3>Flux-tunable couplers</h3><p>Parametric couplers gate the nearest-neighbour interactions that drive the dark-state CZ.</p></div></li>
-          <li><span class="qpu__k">⚑</span><div><h3>Erasure-flag resonators</h3><p>Dedicated readout on the data qubits heralds |1⟩ erasure events for faster detection and lower logical error.</p></div></li>
-        </ul>
-      </div>
-
-      <div class="qpu__lattice" id="latticeWrap" data-cursor="hover">
-        <canvas id="lattice-canvas"></canvas>
-        <span class="qpu__lattice-cap">Distance-3 surface-code logical tile — live</span>
-      </div>
-    </section>
-
-    <!-- ░░░░ VALIDATION GATE CHAIN — HORIZONTAL ░░░░ -->
-    <section class="gates" id="validation">
-      <div class="gates__head">
-        <div class="section-head section-head--light">
-          <span class="section-head__idx">05</span>
-          <h2 class="section-head__title">The validation gate chain</h2>
-          <p class="section-head__sub">Every claim is tied to a named gate, an acceptance threshold and a failure path. If a gate fails, the result still narrows the half-flux route.</p>
-        </div>
-      </div>
-      <div class="gates__viewport" id="gatesViewport">
-        <div class="gates__track" id="gatesTrack">
-          <article class="gate">
-            <span class="gate__id">P0</span><span class="gate__phase">Operational</span>
-            <h3>Active reset</h3>
-            <p>Two-pathway reset of the half-flux thermal |1⟩ population, kept below ≈1% and bounded through a syndrome round.</p>
-          </article>
-          <article class="gate">
-            <span class="gate__id">P1</span><span class="gate__phase">Static bias</span>
-            <h3>Static erasure bias</h3>
-            <p>Target the static and trajectory-averaged erasure bias b/b_eff strong enough to justify the half-flux operating point.</p>
-          </article>
-          <article class="gate">
-            <span class="gate__id">P3</span><span class="gate__phase">Coherence</span>
-            <h3>Coherence floor</h3>
-            <p>Establish that fidelity rather than merely the ideal-case derivation carries the proposed dark-state CZ.</p>
-          </article>
-          <article class="gate">
-            <span class="gate__id">P4·pre</span><span class="gate__phase">Calibration</span>
-            <h3>Calibration precursor</h3>
-            <p>A calibration step that conditions P4 — not an architecture change, but the bridge to device-level measurement.</p>
-          </article>
-          <article class="gate gate--key">
-            <span class="gate__id">P4</span><span class="gate__phase">Device CZ</span>
-            <h3>Dark-state CZ on hardware</h3>
-            <p>Measured device-level CZ reaches the stated infidelity band — the artefact trail and the load-bearing proof.</p>
-          </article>
-          <article class="gate">
-            <span class="gate__id">P5</span><span class="gate__phase">Budget</span>
-            <h3>Error-budget closure</h3>
-            <p>The measured per-round error stays under the accounting ceiling with margin intact.</p>
-          </article>
-          <article class="gate">
-            <span class="gate__id">P6 · P7</span><span class="gate__phase">Logical</span>
-            <h3>Logical cycle</h3>
-            <p>Distance-3 logical cycle and distance scaling work under measured hardware error — not accounting shorthand.</p>
-          </article>
-          <article class="gate gate--infra">
-            <span class="gate__id">V1–V3</span><span class="gate__phase">Infrastructure</span>
-            <h3>Infra qualification</h3>
-            <p>Run in parallel as infrastructure-qualification gates — the platform, lines and interconnect proven on their own ledger.</p>
-          </article>
-          <article class="gate gate--end">
-            <span class="gate__id">→</span><span class="gate__phase">Posture</span>
-            <h3>Falsifiable by design</h3>
-            <p>The document is strongest when every number is tied to a gate. Conditional until P3, P5 and P4 pass.</p>
-          </article>
-        </div>
-      </div>
-      <div class="gates__progress"><span id="gatesProgress"></span></div>
-    </section>
-
-    <!-- ░░░░ OUR EDGE ░░░░ -->
-    <section class="edge" id="edge">
-      <div class="section-head">
-        <span class="section-head__idx">06</span>
-        <h2 class="section-head__title">Our edge</h2>
-        <p class="section-head__sub">Four design commitments that separate a roadmap worth testing from a number worth doubting.</p>
-      </div>
-      <div class="edge__grid">
-        <article class="ecard" data-cursor="hover">
-          <span class="ecard__i">⤳</span>
-          <h3>Error becomes information</h3>
-          <p>Heavy-fluxonium qubits route leakage into a heralded erasure channel. Detected errors are cheaper to correct than hidden ones — the whole code budget changes.</p>
-        </article>
-        <article class="ecard" data-cursor="hover">
-          <span class="ecard__i">❄</span>
-          <h3>Coherence by construction</h3>
-          <p>Josephson-junction-array superinductors and the half-flux operating point are chosen for leakage suppression and high coherence, not retrofitted around it.</p>
-        </article>
-        <article class="ecard" data-cursor="hover">
-          <span class="ecard__i">⌗</span>
-          <h3>Modular by photonic link</h3>
-          <p>A dual-rail cat-state interconnect lets tiles scale through a photonic fabric — modularity designed in at Phase-1, on its own validation ledger.</p>
-        </article>
-        <article class="ecard" data-cursor="hover">
-          <span class="ecard__i">⚙</span>
-          <h3>Engineered to be built</h3>
-          <p>Every plate, package and line is drawn for manufacturability, scalability and experimental test — a roadmap that survives contact with a fab.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ░░░░ APPLICATIONS — photo-card carousel ░░░░ -->
-    <section class="apps" id="applications">
-      <div class="apps__head">
-        <div class="section-head">
-          <span class="section-head__idx">07</span>
-          <h2 class="section-head__title">Where the architecture <em>applies</em></h2>
-          <p class="section-head__sub">From error-correction research to cryogenic co-design — the same heralded-erasure primitive, pointed at different problems.</p>
-        </div>
-        <div class="apps__nav">
-          <button class="apps__btn" id="appsPrev" aria-label="Previous" data-cursor="hover">←</button>
-          <button class="apps__btn" id="appsNext" aria-label="Next" data-cursor="hover">→</button>
-        </div>
-      </div>
-      <div class="apps__hint"><span>Drag, scroll or use the arrows</span></div>
-      <div class="apps__viewport" id="appsViewport">
-        <div class="apps__track" id="appsTrack">
-          <article class="appcard" data-cursor="hover">
-            <img src="assets/img/system-integration.jpg" alt="Quantum error correction" loading="lazy" />
-            <div class="appcard__body">
-              <span class="appcard__label">Error Correction</span>
-              <h3>Heralded erasure for cheaper distance-3 logic</h3>
-              <p>Routing leakage into a measured |1⟩ channel turns silent faults into known error locations — reshaping the surface-code budget.</p>
-              <a href="#technology" class="appcard__link" data-cursor="hover">↳ Explore the method</a>
-            </div>
-          </article>
-          <article class="appcard" data-cursor="hover">
-            <img src="assets/img/cryostat-hero.jpg" alt="Cryogenic platform" loading="lazy" />
-            <div class="appcard__body">
-              <span class="appcard__label">Cryogenic Co-Design</span>
-              <h3>A five-stage 15–20 mK platform designed to scale</h3>
-              <p>Signal chain, heat budget and wiring are drawn together — from the 300 K rack down to the gold-mounted processor on the mixing chamber.</p>
-              <a href="#architecture" class="appcard__link" data-cursor="hover">↳ See the cryostat</a>
-            </div>
-          </article>
-          <article class="appcard" data-cursor="hover">
-            <img src="assets/img/fullsystem-labeled.jpg" alt="Fault-tolerant research" loading="lazy" />
-            <div class="appcard__body">
-              <span class="appcard__label">Fault-Tolerant Research</span>
-              <h3>A falsifiable roadmap toward logical qubits</h3>
-              <p>Every projection is bound to a named validation gate, an acceptance threshold and a failure path — a program designed to be proven, or narrowed.</p>
-              <a href="#validation" class="appcard__link" data-cursor="hover">↳ Read the gate chain</a>
-            </div>
-          </article>
-          <article class="appcard" data-cursor="hover">
-            <img src="assets/img/quantum-stack.jpg" alt="Modular interconnect" loading="lazy" />
-            <div class="appcard__body">
-              <span class="appcard__label">Modular Interconnect</span>
-              <h3>Dual-rail cat-state links between tiles</h3>
-              <p>A Phase-1 photonic interconnect lets logical tiles scale through a fabric — validated on its own ledger, never folded into inherited claims.</p>
-              <a href="#edge" class="appcard__link" data-cursor="hover">↳ Why it matters</a>
-            </div>
-          </article>
-        </div>
-      </div>
-      <div class="apps__progress"><span id="appsProgress"></span></div>
-    </section>
-
-    <!-- ░░░░ GALLERY ░░░░ -->
-    <section class="gallery" id="gallery">
-      <div class="section-head">
-        <span class="section-head__idx">08</span>
-        <h2 class="section-head__title">Inside the machine</h2>
-      </div>
-      <div class="gallery__grid">
-        <figure class="gitem gitem--tall" data-cursor="zoom" data-src="assets/img/cryostat-hero.jpg">
-          <img src="assets/img/cryostat-hero-sm.jpg" alt="Dilution refrigerator cryostat in the lab" loading="lazy" />
-          <figcaption><span>01</span>Dilution cryostat</figcaption>
-        </figure>
-        <figure class="gitem" data-cursor="zoom" data-src="assets/img/system-integration.jpg">
-          <img src="assets/img/system-integration-sm.jpg" alt="Full system integration diagram" loading="lazy" />
-          <figcaption><span>02</span>Reference architecture</figcaption>
-        </figure>
-        <figure class="gitem" data-cursor="zoom" data-src="assets/img/fullsystem-labeled.jpg">
-          <img src="assets/img/fullsystem-labeled-sm.jpg" alt="Labeled full system" loading="lazy" />
-          <figcaption><span>03</span>Signal chain</figcaption>
-        </figure>
-        <figure class="gitem gitem--tall" data-cursor="zoom" data-src="assets/img/quantum-stack.jpg">
-          <img src="assets/img/quantum-stack-sm.jpg" alt="Inside a quantum computer — cutaway of the cryogenic stack" loading="lazy" />
-          <figcaption><span>04</span>Cryogenic stack</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- ░░░░ ENGINEERING DRAWINGS ░░░░ -->
-    <section class="blueprints" id="blueprints">
-      <div class="section-head">
-        <span class="section-head__idx">09</span>
-        <h2 class="section-head__title">Engineering <em>drawings</em></h2>
-        <p class="section-head__sub">Released-for-review plates from the whitepaper — every plate, package and clamp dimensioned for manufacturability, tolerance review and lab verification.</p>
-      </div>
-
-      <figure class="bp-feature" data-cursor="zoom" data-src="assets/img/bp-exploded.jpg">
-        <img src="assets/img/bp-exploded.jpg" alt="DRW-QMHP-003 — exploded assembly of the dilution refrigerator stages" loading="lazy" />
-        <figcaption>
-          <span class="bp-feature__drw">DRW-QMHP-003 · Rev A</span>
-          <span class="bp-feature__name">Exploded assembly — full stage stack, 300 K → 15–20 mK</span>
-        </figcaption>
-      </figure>
-
-      <div class="bp-grid">
-        <figure class="bp-item" data-cursor="zoom" data-src="assets/img/bp-microwave.jpg">
-          <img src="assets/img/bp-microwave-sm.jpg" alt="DRW-QMHP-001 quantum microwave hardware package, full vertical cross-section" loading="lazy" />
-          <figcaption><span>DRW-QMHP-001</span>Microwave hardware package — vertical cross-section</figcaption>
-        </figure>
-        <figure class="bp-item" data-cursor="zoom" data-src="assets/img/bp-chip.jpg">
-          <img src="assets/img/bp-chip-sm.jpg" alt="DRW-QMHP-007 superconducting qubit chip sample package" loading="lazy" />
-          <figcaption><span>DRW-QMHP-007</span>Qubit chip sample package — recess, launchers, copper pitch</figcaption>
-        </figure>
-        <figure class="bp-item" data-cursor="zoom" data-src="assets/img/bp-radshield.jpg">
-          <img src="assets/img/bp-radshield-sm.jpg" alt="DRW-QMHP-005 4 K stage radiation shield assembly" loading="lazy" />
-          <figcaption><span>DRW-QMHP-005</span>4 K radiation shield — plating, lid &amp; callouts</figcaption>
-        </figure>
-        <figure class="bp-item" data-cursor="zoom" data-src="assets/img/bp-coldhead.jpg">
-          <img src="assets/img/bp-coldhead-sm.jpg" alt="DRW-QMHP-008C pulse-tube cooler cold-head assembly" loading="lazy" />
-          <figcaption><span>DRW-QMHP-008C</span>Pulse-tube cold-head — regenerator &amp; 4 K cold-tip clamp</figcaption>
-        </figure>
-        <figure class="bp-item bp-item--wide" data-cursor="zoom" data-src="assets/img/bp-mixchamber.jpg">
-          <img src="assets/img/bp-mixchamber-sm.jpg" alt="DRW-QMHP-004 mixing chamber plate plan view" loading="lazy" />
-          <figcaption><span>DRW-QMHP-004</span>Mixing-chamber plate — plan view, bolt &amp; launcher pattern</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- ░░░░ ABOUT / STATUS ░░░░ -->
-    <section class="about" id="about">
-      <div class="about__inner">
-        <div class="section-head">
-          <span class="section-head__idx">10</span>
-          <h2 class="section-head__title">Document status</h2>
-        </div>
-        <div class="about__cols">
-          <p class="about__lead">QMHP·CoPro should be read as a falsifiable roadmap. It is strongest when every claim is tied to a validation gate, an acceptance threshold and a pivot trigger.</p>
-          <div class="about__detail">
-            <p>The value of this document is not that every number is demonstrated — it is that every major claim already has a named validation gate, threshold, artefact trail and failure path. The half-flux operating point carries a 36–40% thermal-|1⟩ population that must be actively reset to ≤1% before each syndrome round and held there for the duration of the round.</p>
-            <p>If the half-flux operating point does not close, an integer-flux fallback is defined as a separate ledger rather than an inherited success claim. This is suitable for controlled technical review as a roadmap — fabrication review still requires normal engineering sign-off, tolerance review, vendor validation and lab-specific verification.</p>
-            <div class="about__chips">
-              <span class="chip">TRL-2 architecture roadmap</span>
-              <span class="chip">Not experimental proof</span>
-              <span class="chip">Conditional until P3 · P5 · P4</span>
-              <span class="chip">Integer-flux fallback defined</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ░░░░ CONTACT / CTA ░░░░ -->
-    <section class="contact" id="contact">
-      <canvas id="contact-canvas" class="contact__canvas"></canvas>
-      <div class="contact__inner">
-        <span class="section-head__idx">11</span>
-        <h2 class="contact__title">Bring the<br/><em>cold logic</em> forward.</h2>
-        <p class="contact__sub">For technical review, partnership, investment or research collaboration on the QMHP·CoPro program.</p>
-        <div class="contact__actions">
-          <a href="mailto:research@qmhp-copro.tech" class="btn-arrow" data-cursor="hover">
-            <span class="btn-arrow__box">↳</span>
-            <span class="btn-arrow__label">research@qmhp-copro.tech</span>
-          </a>
-        </div>
-        <div class="contact__grid">
-          <div><span class="contact__k">Partnerships</span><p>Vendor validation & fabrication review</p></div>
-          <div><span class="contact__k">Investors</span><p>Program roadmap & milestone briefings</p></div>
-          <div><span class="contact__k">Research</span><p>Gate-chain collaboration & co-publication</p></div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ░░ FOOTER ░░ -->
-  <footer class="footer">
-    <div class="footer__top">
-      <a href="#top" class="footer__brand" data-cursor="hover"><span class="nav__glyph">⎔</span> QMHP·CoPro</a>
-      <a href="#top" class="footer__back" data-cursor="hover">Back to top ↑</a>
+<!-- ═══════════ 01 · CAPTURE DINNER ═══════════ -->
+<section class="chapter" id="capture" data-scene="dusk">
+  <div class="wrap chapter__grid">
+    <div class="chapter__text">
+      <p class="eyebrow reveal"><span class="tick">01</span> Evening · 7:14 PM</p>
+      <h2 class="reveal">Point.<br>Shoot.<br><em>Dinner logged.</em></h2>
+      <p class="body reveal">Before bed, open Nocturne and photograph your plate. The camera focuses, you press the shutter, and the AI reads the meal — separating the foods and their likely ingredients on its own.</p>
+      <p class="body reveal">You never type an ingredient list. You never weigh anything. The photograph <em>is</em> the entry.</p>
+      <ul class="checklist reveal">
+        <li>Foods identified automatically</li>
+        <li>Likely ingredients inferred — garlic, butter, cream</li>
+        <li>Timestamped to the minute it was eaten</li>
+      </ul>
+      <p class="tiny reveal">Recognition is assistive. Anything the AI gets wrong takes one tap to correct.</p>
     </div>
-    <div class="footer__cols">
-      <div><span>Program</span><a href="#technology">Technology</a><a href="#architecture">Architecture</a><a href="#qpu">Processor</a></div>
-      <div><span>Evidence</span><a href="#validation">Validation gates</a><a href="#about">Document status</a><a href="#edge">Our edge</a></div>
-      <div><span>Connect</span><a href="#contact">Contact</a><a href="mailto:research@qmhp-copro.tech">Email</a></div>
+    <div class="chapter__stage">
+      <div data-mount="camera-dinner"></div>
     </div>
-    <div class="footer__base">
-      <span>© 2026 QMHP·CoPro Research Team — TRL-2 architecture roadmap. Not experimental proof.</span>
-      <span>Heavy-fluxonium · Erasure-biased · Distance-3</span>
+  </div>
+</section>
+
+<!-- ═══════════ 02 · CAPTURE EVERYTHING ═══════════ -->
+<section class="chapter chapter--rev" id="evening" data-scene="dusk">
+  <div class="wrap chapter__grid">
+    <div class="chapter__text">
+      <p class="eyebrow reveal"><span class="tick">02</span> Evening, later</p>
+      <h2 class="reveal">If you consume it before bed, <em>capture it.</em></h2>
+      <p class="body reveal">Dinner is rarely the last thing. The square of chocolate at nine. The coffee you almost forgot about. The glass of wine while the credits roll. Those are often the entries that explain the night.</p>
+      <ul class="chips reveal" aria-label="Things worth capturing">
+        <li>Dessert</li><li>Chocolate</li><li>Ice cream</li><li>Tea</li><li>Coffee</li>
+        <li>Soft drinks</li><li>Alcohol</li><li>Supplements</li><li>Late-night snacks</li>
+      </ul>
+      <p class="body reveal">Every capture drops into tonight's timeline with its own time stamp — because <em>when</em> matters as much as <em>what</em>.</p>
     </div>
-  </footer>
+    <div class="chapter__stage chapter__stage--split">
+      <div data-mount="camera-evening"></div>
+      <div data-mount="timeline"></div>
+    </div>
+  </div>
+</section>
 
-  <!-- ░░ LIGHTBOX ░░ -->
-  <div class="lightbox" id="lightbox"><img id="lightboxImg" src="" alt="" /><button class="lightbox__close" id="lightboxClose" aria-label="Close">✕</button></div>
+<!-- ═══════════ 03 · NIGHT ═══════════ -->
+<section class="night" id="night" data-scene="night">
+  <div class="wrap night__grid">
+    <div class="night__text">
+      <p class="eyebrow reveal"><span class="tick">03</span> 10:40 PM</p>
+      <h2 class="reveal">Then Nocturne <em>gets out of the way.</em></h2>
+      <p class="body reveal">No wearable. No microphone in the room. No sleep stages guessed from a wrist. The evening is logged, and the app goes dark until morning.</p>
+    </div>
+    <div class="night__stage">
+      <div data-mount="night-phone"></div>
+    </div>
+  </div>
+</section>
 
-  <!-- Libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<!-- ═══════════ 04 · MORNING ═══════════ -->
+<section class="morning" id="morning" data-scene="dawn">
+  <div class="wrap morning__grid">
+    <div class="morning__text">
+      <p class="eyebrow reveal"><span class="tick">04</span> 7:00 AM</p>
+      <h2 class="reveal">Good morning.<br><em>How did you sleep?</em></h2>
+      <p class="body reveal">The alarm goes off and Nocturne asks two questions. A number out of ten, and whether you dreamed. It takes about eight seconds, before you are properly awake.</p>
+      <p class="body reveal">That single honest number, paired with last night's timeline, is the whole engine.</p>
+      <p class="hint reveal" data-hint>→ Stop the alarm, then drag the score. It is live.</p>
+    </div>
+    <div class="morning__stage">
+      <div data-mount="morning-phone"></div>
+    </div>
+  </div>
+</section>
 
-  <!-- App -->
-  <script type="module" src="js/quantum-scene.js"></script>
-  <script src="js/main.js" defer></script>
+<!-- ═══════════ DREAMS ═══════════ -->
+<section class="dreams" id="dreams" data-scene="night">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow reveal">Dream tracking</p>
+      <h2 class="h-editorial reveal">Dreams are <em>data</em>,<br><span class="dim">not an afterthought.</span></h2>
+      <p class="lede lede--c reveal">Most tracking stops at duration. Nocturne records whether you dreamed, how vivid it was, how it felt, and — if you want — what you remember. Themes are extracted from your own words over time.</p>
+    </header>
+    <div data-mount="dream-dash"></div>
+  </div>
+</section>
+
+<!-- ═══════════ PATTERNS OVER TIME ═══════════ -->
+<section class="patterns" id="patterns" data-scene="day">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow reveal"><span class="tick">05</span> Over time</p>
+      <h2 class="h-editorial reveal">Every evening is <em>a data point.</em></h2>
+      <p class="lede lede--c reveal">One night tells you nothing. Ten start to whisper. Nocturne lines up what you consumed, when you consumed it, how you slept and what you dreamed — then looks for the things that keep happening together.</p>
+    </header>
+    <div class="equation reveal" aria-hidden="true">
+      <span>What you consumed</span><i>→</i><span>When</span><i>→</i><span>How you slept</span><i>→</i><span>What you dreamed</span>
+    </div>
+    <div data-mount="correlations"></div>
+    <p class="disclaimer reveal">Nocturne reports <strong>correlations observed in your own log</strong>. A pattern is not a cause: sleep is affected by stress, light, exercise, temperature, illness and much else. Nocturne does not diagnose sleep disorders, allergies, intolerances or any medical condition.</p>
+  </div>
+</section>
+
+<!-- ═══════════ WEEKLY REPORT ═══════════ -->
+<section class="report" id="report" data-scene="day">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow reveal">Sunday, 8:00 AM · Weekly report</p>
+      <h2 class="h-editorial reveal">Your week, <em>decoded.</em></h2>
+      <p class="lede lede--c reveal">Seven evenings, seven mornings. Nocturne assembles them into one page you can read with a coffee.</p>
+    </header>
+    <div data-mount="report"></div>
+  </div>
+</section>
+
+<!-- ═══════════ NO FOOD DIARY ═══════════ -->
+<section class="simple" data-scene="day">
+  <div class="wrap simple__grid">
+    <div class="simple__text">
+      <h2 class="reveal">No calorie counting.<br><span class="dim">No food diary.</span></h2>
+      <p class="body reveal">Nocturne is not a nutrition app. There is no macro pie chart, no daily target, nothing to weigh and nothing to look up. You are not being scored on what you ate.</p>
+      <p class="body reveal">Just take a photo. The AI handles the initial recognition and logging — and everything after that is about how you slept.</p>
+    </div>
+    <div class="simple__vs">
+      <div data-mount="versus"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TIME / RICHNESS ═══════════ -->
+<section class="growth" id="growth" data-scene="day">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow reveal">Signal from noise</p>
+      <h2 class="h-editorial reveal">Your patterns become <em>clearer with time.</em></h2>
+      <p class="lede lede--c reveal">Nocturne deliberately says very little in week one. Confidence is earned from repetition — the picture sharpens as the nights add up.</p>
+    </header>
+    <div data-mount="growth"></div>
+  </div>
+</section>
+
+<!-- ═══════════ PERSONAL ═══════════ -->
+<section class="personal" data-scene="day">
+  <div class="wrap personal__grid">
+    <div class="personal__text">
+      <h2 class="reveal">Your sleep is <em>personal.</em></h2>
+      <p class="body reveal">“Don't drink coffee at night” is not advice, it is a slogan. It says nothing about your 4 PM flat white, your decaf habit, or the fact that in your log the coffee nights score fine and the wine nights do not.</p>
+      <p class="body reveal">Population averages describe a crowd you are not in. Nocturne builds its insights from one history: yours.</p>
+    </div>
+    <div class="personal__viz"><div data-mount="personal"></div></div>
+  </div>
+</section>
+
+<!-- ═══════════ INTERACTIVE DEMO ═══════════ -->
+<section class="demo" id="demo" data-scene="dusk">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow reveal">Interactive · about 30 seconds</p>
+      <h2 class="h-editorial reveal">Try a night <em>yourself.</em></h2>
+      <p class="lede lede--c reveal">A simulated evening, start to finish. Photograph a dinner, add something later, go to sleep, wake up, rate it — and see what Nocturne would say.</p>
+    </header>
+    <div data-mount="demo"></div>
+  </div>
+</section>
+
+<!-- ═══════════ PRIVACY ═══════════ -->
+<section class="privacy" id="privacy" data-scene="day">
+  <div class="wrap privacy__grid">
+    <div class="privacy__text">
+      <p class="eyebrow reveal">Trust</p>
+      <h2 class="reveal">Your meals.<br>Your sleep.<br><em>Your data.</em></h2>
+      <p class="body reveal">This is a log of what you eat and how you rest — some of the most personal information there is. It is treated that way.</p>
+    </div>
+    <ul class="privacy__list">
+      <li class="reveal"><h3>Yours by default</h3><p>Your photos, ratings and dream notes are yours. We do not sell them, and we do not share them with advertisers, insurers or employers.</p></li>
+      <li class="reveal"><h3>Encrypted in transit and at rest</h3><p>Images are processed for recognition and then stored against your account only.</p></li>
+      <li class="reveal"><h3>Export or erase, any time</h3><p>One tap to download everything as a file you can read. One tap to delete it permanently, photos included.</p></li>
+      <li class="reveal"><h3>Training is opt-in, never assumed</h3><p>Your images are not used to improve our models unless you explicitly turn that on. Off is the default.</p></li>
+      <li class="reveal"><h3>Not a medical device</h3><p>Nocturne surfaces behavioural correlations from your own log. It does not diagnose or treat sleep disorders, allergies, intolerances or any medical condition — and it is not a substitute for a clinician.</p></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════ CLOSING ═══════════ -->
+<section class="close" data-scene="night">
+  <div class="wrap close__inner">
+    <p class="eyebrow reveal">Tonight</p>
+    <h2 class="reveal">Eat. Snap. Sleep.<br>Score. <em>Discover.</em></h2>
+    <p class="lede lede--c reveal">Start tonight with one photograph. In a month you will know things about your own evenings that no general advice could ever have told you.</p>
+    <div class="close__cta reveal">
+      <a class="btn btn--lg" href="#demo">Start Tracking</a>
+      <a class="btn btn--ghost btn--lg" href="#capture">See How It Works<span class="btn__arr" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot" data-scene="night">
+  <div class="wrap foot__grid">
+    <div class="foot__brand">
+      <span class="nav__mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 14.6A8.6 8.6 0 0 1 9.4 4 9 9 0 1 0 20 14.6Z"/><circle cx="16.2" cy="6.4" r="1.3"/></svg></span>
+      <span class="nav__name">Nocturne</span>
+    </div>
+    <nav class="foot__links" aria-label="Footer">
+      <a href="#capture">How it works</a><a href="#report">Weekly report</a><a href="#dreams">Dream tracking</a><a href="#demo">Try a night</a><a href="#privacy">Privacy</a>
+    </nav>
+    <p class="foot__legal">Nocturne provides personalised behavioural insights based on the information you log. It is a wellness product, not a medical device, and it does not diagnose, treat or prevent any condition. All figures shown on this page are illustrative sample data. Speak to a qualified clinician about persistent sleep problems.</p>
+    <p class="foot__c">© <span data-year>2026</span> Nocturne Labs</p>
+  </div>
+</footer>
+
+<noscript>
+  <div class="noscript">The interactive demonstrations on this page need JavaScript. The story still reads without it: photograph what you eat and drink before bed, rate your sleep in the morning, and Nocturne looks for patterns across your own nights.</div>
+</noscript>
+
+<script type="module" src="js/main.js"></script>
 </body>
 </html>
