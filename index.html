@@ -10,6 +10,7 @@
 <meta property="og:description" content="Photograph dinner. Sleep. Rate it. Learn your own patterns.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23160f18'/%3E%3Cpath d='M21.5 20.4A8 8 0 0 1 12.6 8.2a8.6 8.6 0 1 0 8.9 12.2Z' fill='%23f0b46a'/%3E%3C/svg%3E">
+<link rel="preload" as="image" href="assets/img/meal-pasta.webp" type="image/webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..500&family=Inter:wght@300..700&display=swap" media="print" onload="this.media='all'">
@@ -170,6 +171,23 @@
   </div>
 </section>
 
+<!-- ═══════════ BAND · ASLEEP ═══════════ -->
+<section class="band" data-scene="night" aria-label="Asleep">
+  <picture class="band__img">
+    <source media="(min-width:900px)" srcset="assets/img/band-sleep-2000.webp" type="image/webp">
+    <source media="(min-width:900px)" srcset="assets/img/band-sleep-2000.jpg">
+    <source media="(min-width:701px)" srcset="assets/img/band-sleep-1200.webp" type="image/webp">
+    <source media="(min-width:701px)" srcset="assets/img/band-sleep-1200.jpg">
+    <source srcset="assets/img/band-sleep-mob.webp" type="image/webp">
+    <img src="assets/img/band-sleep-mob.jpg" width="900" height="750" loading="lazy" decoding="async"
+         alt="A person asleep, face down on a pillow in a darkened bedroom">
+  </picture>
+  <div class="wrap band__copy">
+    <p class="eyebrow reveal">Nothing to wear · nothing to charge</p>
+    <h2 class="reveal">The only thing Nocturne asks of the night is that you <em>sleep through it.</em></h2>
+  </div>
+</section>
+
 <!-- ═══════════ 04 · MORNING ═══════════ -->
 <section class="morning" id="morning" data-scene="dawn">
   <div class="wrap morning__grid">
@@ -183,6 +201,24 @@
     <div class="morning__stage">
       <div data-mount="morning-phone"></div>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════ BAND · SUNRISE ═══════════ -->
+<section class="band band--dawn" data-scene="dawn" aria-label="After the alarm">
+  <picture class="band__img">
+    <source media="(min-width:900px)" srcset="assets/img/band-sunrise-2000.webp" type="image/webp">
+    <source media="(min-width:900px)" srcset="assets/img/band-sunrise-2000.jpg">
+    <source media="(min-width:701px)" srcset="assets/img/band-sunrise-1200.webp" type="image/webp">
+    <source media="(min-width:701px)" srcset="assets/img/band-sunrise-1200.jpg">
+    <source srcset="assets/img/band-sunrise-mob.webp" type="image/webp">
+    <img src="assets/img/band-sunrise-mob.jpg" width="900" height="750" loading="lazy" decoding="async"
+         alt="An empty unmade bed with early morning sunlight falling across the pillows">
+  </picture>
+  <div class="wrap band__copy">
+    <p class="eyebrow reveal">7:02 AM · logged</p>
+    <h2 class="reveal">Eight seconds, and last night becomes <em>a data point.</em></h2>
+    <p class="reveal">By the time you are out of bed, the evening timeline and the morning score are already paired. There is nothing else to do until tonight.</p>
   </div>
 </section>
 
@@ -259,6 +295,15 @@
       <h2 class="reveal">Your sleep is <em>personal.</em></h2>
       <p class="body reveal">“Don't drink coffee at night” is not advice, it is a slogan. It says nothing about your 4 PM flat white, your decaf habit, or the fact that in your log the coffee nights score fine and the wine nights do not.</p>
       <p class="body reveal">Population averages describe a crowd you are not in. Nocturne builds its insights from one history: yours.</p>
+      <figure class="shot reveal">
+        <picture>
+          <source srcset="assets/img/portrait-tired-1000.webp" media="(min-width:700px)" type="image/webp">
+          <source srcset="assets/img/portrait-tired-640.webp" type="image/webp">
+          <img src="assets/img/portrait-tired-640.jpg" width="1000" height="1250" loading="lazy" decoding="async"
+               alt="A tired person sitting up in daylight with a hand over their face">
+        </picture>
+        <figcaption>Two people can eat the same dinner, go to bed at the same hour, and wake up nothing alike. Only one of those two histories is yours.</figcaption>
+      </figure>
     </div>
     <div class="personal__viz"><div data-mount="personal"></div></div>
   </div>

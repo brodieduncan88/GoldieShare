@@ -3,7 +3,7 @@
    ============================================================ */
 import { el, onView, animateIn } from './util.js';
 import { Camera, Night, Morning, Seq, phone, statusBar, nightMarkup, insightMarkup, scoreColor, scoreWord, REDUCED } from './phone.js';
-import { SUBJECTS } from './food.js';
+import { SUBJECTS, sceneFor, isPhoto } from './food.js';
 import { mountTimeline, mountCorrelations, mountReport, mountDreams, mountVersus, mountGrowth, mountPersonal } from './sections.js';
 import { mountDemo } from './demo.js';
 
@@ -112,8 +112,8 @@ const icons = () => $$('[data-ico]').forEach(n => n.innerHTML = ICONS[n.dataset.
    ============================================================ */
 const camMarkup = (key, mode, modes, time) => {
   const s = SUBJECTS[key];
-  return `<div class="cam is-blur">
-    <div class="cam__view"><div class="cam__scene">${s.svg()}</div></div>
+  return `<div class="cam is-blur ${isPhoto(key) ? 'cam--photo' : ''}">
+    <div class="cam__view"><div class="cam__scene">${sceneFor(key, true)}</div></div>
     <div class="cam__grid"></div><div class="cam__vig"></div><div class="cam__focus"></div>
     <div class="scan"><div class="scan__mesh"></div><div class="scan__beam"></div></div>
     <div class="dets"></div>${statusBar(time)}
@@ -124,7 +124,7 @@ const camMarkup = (key, mode, modes, time) => {
     </div>
     <div class="cam__flash"></div>
     <div class="sheet"><div class="sheet__tick"><svg viewBox="0 0 24 24"><path d="M4 12.6 9.2 18 20 6.6"/></svg></div>
-      <h4>Dinner saved.</h4><div class="sheet__meta">Logged 7:14 PM · 5 items recognised</div>
+      <h4>Dinner saved.</h4><div class="sheet__meta">Logged 7:14 PM · ${s.foods.length} items recognised</div>
       <div class="sheet__foods">${s.foods.map((f, i) => `<span style="transition-delay:${240 + i * 70}ms">${f}</span>`).join('')}</div></div>
   </div>`;
 };
@@ -147,7 +147,7 @@ const heroScoreMarkup = () => `<div class="rate" style="padding-top:58px">
 
 function heroLoop(mount) {
   const node = phone(`
-    <div class="scr on" data-h="0">${camMarkup('plate', 'Dinner', ['Dinner', 'Dessert', 'Drink'], '7:14')}</div>
+    <div class="scr on" data-h="0">${camMarkup('pasta', 'Dinner', ['Dinner', 'Dessert', 'Drink'], '7:14')}</div>
     <div class="scr" data-h="1">${nightMarkup()}</div>
     <div class="scr" data-h="2">${alarmOnly()}</div>
     <div class="scr" data-h="3">${heroScoreMarkup()}</div>
@@ -186,7 +186,7 @@ function heroLoop(mount) {
     show(0); mark(0); resetCam(); resetNight(); resetScore();
     node.querySelectorAll('.ins-bar').forEach(b => b.style.width = '0');
     const f = q('.cam__focus');
-    f.style.left = '50%'; f.style.top = '46%'; f.style.marginLeft = '-44px'; f.style.marginTop = '-44px';
+    f.style.left = '50%'; f.style.top = '43%'; f.style.marginLeft = '-44px'; f.style.marginTop = '-44px';
     await wait(500); f.classList.add('on');
     await wait(520); q('.cam').classList.remove('is-blur'); f.classList.add('lock');
     await wait(950);
@@ -201,7 +201,7 @@ function heroLoop(mount) {
     const scan = q('.scan'); scan.classList.add('on'); void scan.offsetWidth; scan.classList.add('go');
     await wait(650);
     const box = q('.dets');
-    for (const d of SUBJECTS.plate.dets) {
+    for (const d of SUBJECTS.pasta.dets) {
       box.appendChild(el(`<div class="det" data-side="${d.side}" style="left:${d.x}%;top:${d.y}%">
         <span class="det__line"></span><span class="det__dot"></span><span class="det__lbl">${d.label}</span></div>`));
       await wait(60);
@@ -280,7 +280,10 @@ const setMode = (cam, mode, modes = ['Dinner', 'Dessert', 'Drink']) => {
 };
 
 function dinnerDemo(mount) {
-  const cam = new Camera(mount, { subject: 'plate', mode: 'Dinner', clock: '7:14' });
+  const cam = new Camera(mount, {
+    subject: 'pasta', mode: 'Dinner', clock: '7:14',
+    savedMeta: 'Logged 7:14 PM · 6 items recognised'
+  });
   const replay = el(`<button class="btn btn--ghost btn--sm" style="margin-top:22px">Replay the capture</button>`);
   mount.appendChild(replay);
   mount.style.display = 'flex'; mount.style.flexDirection = 'column'; mount.style.alignItems = 'center';
@@ -295,7 +298,7 @@ function eveningDemo(camMount, tlMount) {
   const seq = new Seq();
   const run = () => seq.run(async wait => {
     tl.reset();
-    tl.add({ time: '7:14 PM', kind: 'Dinner', foods: ['Chicken', 'Potato', 'Broccoli', 'Garlic'] });
+    tl.add({ time: '7:14 PM', kind: 'Dinner', foods: ['Penne', 'Chicken', 'Aubergine', 'Tomato'] });
     await wait(700);
 
     /* dessert */

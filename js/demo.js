@@ -4,6 +4,8 @@
 import { el } from './util.js';
 import { Camera, Night, Morning, Seq, scoreWord, scoreColor } from './phone.js';
 
+const DINNER = ['Chicken', 'Rice', 'Black beans', 'Sweetcorn', 'Peppers', 'Lime'];
+
 const STEPS = [
   ['Photograph dinner', 'Frame the plate and press the shutter.'],
   ['AI reads the meal', 'Foods and likely ingredients, no typing.'],
@@ -47,10 +49,10 @@ export function mountDemo(node) {
     let p;
     if (key === 'dinner') {
       p = new Camera(null, {
-        subject: 'plate', mode: 'Dinner', clock: '7:14', savedTitle: 'Dinner saved.',
-        savedMeta: 'Logged 7:14 PM · 5 items recognised',
+        subject: 'bowl', mode: 'Dinner', clock: '7:14', savedTitle: 'Dinner saved.',
+        savedMeta: 'Logged 7:14 PM · 6 items recognised',
         onSaved: () => {
-          state.entries.push({ time: '7:14 PM', kind: 'Dinner', foods: ['Chicken', 'Potato', 'Broccoli', 'Garlic', 'Cream sauce'] });
+          state.entries.push({ time: '7:14 PM', kind: 'Dinner', foods: DINNER });
           renderSum();
           go(1);
           seq.run(async wait => { await wait(2400); if (step === 1) go(2); });
@@ -114,7 +116,7 @@ export function mountDemo(node) {
     if (i === 0) {
       const cam = showPhone('dinner'); cam.reset(); cam.arm();
       $t.textContent = 'Photograph dinner';
-      $p.innerHTML = 'It is 7:14 PM. The camera has focused on the plate — press the shutter to capture it. You can shoot the illustrated dinner, or upload a photo of your own.';
+      $p.innerHTML = 'It is 7:14 PM. The camera has focused on the bowl — press the shutter to capture it. You can shoot the sample dinner, or upload a photo of your own.';
       const f = el(`<label class="btn btn--ghost btn--sm file">Upload your own photo<input type="file" accept="image/*"></label>`);
       f.querySelector('input').addEventListener('change', e => {
         const file = e.target.files && e.target.files[0]; if (!file) return;
@@ -124,7 +126,7 @@ export function mountDemo(node) {
         $hint.textContent = 'Your photo is shown locally in your browser only — nothing is uploaded. Recognition on this page is a scripted simulation.';
       });
       $acts.appendChild(f);
-      btn('Shoot the sample plate', () => cam.capture(), true);
+      btn('Shoot the sample dinner', () => cam.capture(), true);
       if (!$hint.textContent) $hint.textContent = 'Press the white shutter button on the phone.';
     }
 
@@ -132,7 +134,7 @@ export function mountDemo(node) {
       $t.textContent = 'The AI reads the meal';
       $p.innerHTML = state.own
         ? 'The scan sweeps the photo and labels each item. On this page the result is scripted — in the product it comes from the image itself.'
-        : 'The scan sweeps the photo, then each food is labelled: grilled chicken, roast potatoes, broccoli, garlic, cream sauce. Garlic and cream are inferred ingredients, not separate dishes.';
+        : 'The scan sweeps the photo, then each component is labelled separately: grilled chicken, white rice, black beans, sweetcorn, peppers. One photo, six entries, nothing typed.';
       $hint.textContent = 'Nothing was typed. That is the whole point.';
     }
 
@@ -200,7 +202,7 @@ export function mountDemo(node) {
         state.dreamed === false ? ' You did not recall a dream.' : '';
       $res.innerHTML = `
         <h4>Night 1 recorded.</h4>
-        <p>Dinner at 7:14 PM — chicken, potato, broccoli, garlic, cream sauce — followed by ${later}.
+        <p>Dinner at 7:14 PM — ${DINNER.join(', ').toLowerCase()} — followed by ${later}.
         You rated the night <b>${state.score ?? '—'}/10</b>.${dream}</p>
         <p style="margin-top:12px">One night is not a pattern, so Nocturne draws no conclusion. It needs roughly ten evenings containing the same item before it will show you a correlation at all.</p>
         <p style="margin-top:12px;color:var(--fg-mute)">After thirty nights, an evening like this one would sit inside a card that reads:

@@ -1,7 +1,7 @@
 /* ============================================================
    Phone hardware + the four screens: camera, night, alarm, rating
    ============================================================ */
-import { SUBJECTS } from './food.js';
+import { SUBJECTS, sceneFor, isPhoto, photoMarkup } from './food.js';
 
 export const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -34,10 +34,9 @@ export const statusBar = (t = '7:14') => `<div class="sbar"><span>${t}</span>
 /* ============================================================
    CAMERA
    ============================================================ */
-const camMarkup = (key, { mode = 'Dinner', modes = ['Dinner', 'Dessert', 'Drink'], time = '7:14' } = {}) => {
-  const s = SUBJECTS[key];
-  return `<div class="cam is-blur">
-    <div class="cam__view"><div class="cam__scene">${s.svg()}</div></div>
+const camMarkup = (key, { mode = 'Dinner', modes = ['Dinner', 'Dessert', 'Drink'], time = '7:14', eager = false } = {}) => {
+  return `<div class="cam is-blur ${isPhoto(key) ? 'cam--photo' : ''}">
+    <div class="cam__view"><div class="cam__scene">${sceneFor(key, eager)}</div></div>
     <div class="cam__grid"></div><div class="cam__vig"></div>
     <div class="cam__focus"></div>
     <div class="scan"><div class="scan__mesh"></div><div class="scan__beam"></div></div>
@@ -64,7 +63,7 @@ export class Camera {
   constructor(mount, opts = {}) {
     this.o = Object.assign({ subject: 'plate', mode: 'Dinner', clock: '7:14', savedTitle: 'Dinner saved.', savedMeta: 'Logged 7:14 PM · 5 items recognised' }, opts);
     this.seq = new Seq();
-    this.node = phone(camMarkup(this.o.subject, { mode: this.o.mode, modes: this.o.modes, time: this.o.clock }), opts.cls || '');
+    this.node = phone(camMarkup(this.o.subject, { mode: this.o.mode, modes: this.o.modes, time: this.o.clock, eager: opts.eager }), opts.cls || '');
     if (mount) mount.appendChild(this.node);
     this.$ = q => this.node.querySelector(q);
     this.cam = this.$('.cam');
@@ -75,11 +74,13 @@ export class Camera {
   setSubject(key, dets) {
     this.o.subject = key;
     this.custom = null; this.customDets = dets || null;
-    this.$('.cam__scene').innerHTML = SUBJECTS[key].svg();
+    this.cam.classList.toggle('cam--photo', isPhoto(key));
+    this.$('.cam__scene').innerHTML = sceneFor(key);
   }
   setImage(url) {
     this.custom = url;
-    this.$('.cam__scene').innerHTML = `<img src="${url}" alt="Your uploaded dinner photo">`;
+    this.cam.classList.add('cam--photo');
+    this.$('.cam__scene').innerHTML = `<img src="${url}" alt="The dinner photo you uploaded">`;
   }
   reset() {
     this.seq.cancel();
@@ -98,7 +99,8 @@ export class Camera {
     if (this.state !== 'idle') return;
     return this.seq.run(async wait => {
       const f = this.$('.cam__focus');
-      f.style.left = '50%'; f.style.top = '46%'; f.style.marginLeft = '-44px'; f.style.marginTop = '-44px';
+      f.style.left = '50%'; f.style.top = this.cam.classList.contains('cam--photo') ? '43%' : '46%';
+      f.style.marginLeft = '-44px'; f.style.marginTop = '-44px';
       await wait(260); f.classList.add('on');
       await wait(520); this.cam.classList.remove('is-blur'); f.classList.add('lock');
       await wait(900); f.classList.remove('on');

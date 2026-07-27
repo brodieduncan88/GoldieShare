@@ -256,8 +256,62 @@ export const coffeeDetections = [
   { x: 52, y: 32.5, label: 'Caffeine · likely', side: 'r' }
 ];
 
+
+/* ============================================================
+   Photographed subjects.
+   Shot 3:4 — the aspect a phone actually takes — and shown in a
+   3:4 preview window inside the taller screen, exactly like a
+   real camera app. Detection coordinates below are already
+   mapped from image space into screen space.
+   ============================================================ */
+export const WIN = { top: 9, height: 62.2 };            /* preview window, % of screen — must match .cam--photo in CSS */
+const toScreen = y => +(WIN.top + y * WIN.height / 100).toFixed(1);
+
+export function photoMarkup({ src, alt, eager }) {
+  return `<picture>
+    <source srcset="${src}.webp" type="image/webp">
+    <img src="${src}.jpg" alt="${alt}" width="756" height="1008"
+         decoding="async" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'}>
+  </picture>`;
+}
+
+/* y here is a position in the photograph; toScreen() maps it into the window */
+const PASTA_DETS = [
+  { x: 52, y: 32, label: 'Grilled chicken', side: 'r' },
+  { x: 30, y: 40, label: 'Aubergine', side: 'l' },
+  { x: 17, y: 48, label: 'Penne pasta', side: 'r' },
+  { x: 43, y: 57, label: 'Parmesan', side: 'r' },
+  { x: 72, y: 64, label: 'Tomato sauce', side: 'l' },
+  { x: 49, y: 72, label: 'Basil', side: 'r' }
+].map(d => ({ ...d, y: toScreen(d.y) }));
+
+const BOWL_DETS = [
+  { x: 33, y: 24, label: 'Grilled chicken', side: 'r' },
+  { x: 81, y: 33, label: 'Peppers', side: 'l' },
+  { x: 20, y: 44, label: 'White rice', side: 'r' },
+  { x: 74, y: 54, label: 'Sweetcorn', side: 'l' },
+  { x: 46, y: 62, label: 'Black beans', side: 'r' }
+].map(d => ({ ...d, y: toScreen(d.y) }));
+
 export const SUBJECTS = {
+  pasta: {
+    photo: 'assets/img/meal-pasta', alt: 'A plate of penne with chicken, aubergine and tomato sauce, photographed from above',
+    dets: PASTA_DETS, title: 'Dinner',
+    foods: ['Penne pasta', 'Grilled chicken', 'Aubergine', 'Tomato sauce', 'Parmesan', 'Basil']
+  },
+  bowl: {
+    photo: 'assets/img/meal-bowl', alt: 'A bowl of chicken, rice, black beans, sweetcorn and peppers, photographed from above',
+    dets: BOWL_DETS, title: 'Dinner',
+    foods: ['Grilled chicken', 'White rice', 'Black beans', 'Sweetcorn', 'Peppers', 'Lime']
+  },
   plate: { svg: plate, dets: plateDetections, title: 'Dinner', foods: ['Grilled chicken', 'Roast potatoes', 'Broccoli', 'Garlic', 'Cream sauce'] },
   dessert: { svg: dessert, dets: dessertDetections, title: 'Dessert', foods: ['Chocolate ice cream', 'Cocoa', 'Dairy', 'Sugar'] },
   coffee: { svg: coffee, dets: coffeeDetections, title: 'Drink', foods: ['Coffee', 'Caffeine'] }
 };
+
+/* the scene for a subject — a photograph if it has one, otherwise the drawing */
+export const sceneFor = (key, eager) => {
+  const s = SUBJECTS[key];
+  return s.photo ? photoMarkup({ src: s.photo, alt: s.alt, eager }) : s.svg();
+};
+export const isPhoto = key => !!SUBJECTS[key].photo;

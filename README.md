@@ -25,10 +25,12 @@ evening (dusk) → night → sunrise (dawn) → morning (day)
 | Section | What it demonstrates |
 |---|---|
 | Hero | A phone looping the full journey: dinner → AI analysis → sleep → morning score → insights |
-| 01 · Capture dinner | Focus pull, shutter, flash, scan beam, five food detections, “Dinner saved.” |
+| 01 · Capture dinner | Focus pull, shutter, flash, scan beam, six food detections on a real photograph, “Dinner saved.” |
 | 02 · Capture everything | A second and third capture (dessert, coffee) building tonight’s timeline live |
 | 03 · Night | Tonight’s log completes, the screen goes deep, “Goodnight. We’ll check in when you wake up.” |
+| — Asleep | Full-bleed photographic band closing the night chapter |
 | 04 · Morning | A ringing alarm you can stop, then a live 0–10 slider, dream yes/no, vividness and notes |
+| — Sunrise | Full-bleed photographic band opening the morning chapter |
 | Dream tracking | Frequency ring, vividness gauge, themes from your own notes, one observed pattern |
 | Over time | Animated correlation cards — garlic, coffee after 8 PM, chocolate, alcohol |
 | Weekly report | “Your week, decoded.” — generates on scroll, then seven animated charts and three insight cards |
@@ -65,16 +67,44 @@ index.html          markup and section mount points
 css/style.css       design system: tokens, four lighting themes, phone UI, charts
 js/main.js          scroll lighting engine, parallax, nav, reveals, hero loop, wiring
 js/phone.js         phone hardware + camera / night / alarm / rating components
-js/food.js          the food itself — hand-drawn SVG plate, dessert and coffee
+js/food.js          camera subjects — photographed dinners + drawn dessert and coffee
+assets/img/         optimised photography (WebP + JPEG, art-directed per breakpoint)
 js/charts.js        line, scatter, bar, stacked, ring and gauge charts
 js/sections.js      timeline, correlations, weekly report, dream dashboard, growth
 js/demo.js          the seven-step "Try a night yourself" sequencer
 js/util.js          element + IntersectionObserver helpers
 ```
 
-- **No stock photography and no AI imagery.** The meals in the camera are drawn by hand in
-  SVG — a plate of grilled chicken, roast potatoes, broccoli, garlic and cream sauce, a bowl of
-  chocolate ice cream, and a cup of coffee, all lit by the same warm evening lamp.
+### Imagery
+
+Five supplied photographs carry the page; nothing is stock and nothing is AI-generated.
+
+| Image | Where it lives |
+|---|---|
+| Penne with chicken and aubergine | The dinner the camera photographs in the hero loop and in section 01 |
+| Chicken and rice bowl | The dinner you photograph yourself in “Try a night” |
+| Person asleep | Full-bleed band between the night and morning chapters |
+| Empty bed at sunrise | Full-bleed band between the morning and dream chapters |
+| Tired portrait | Editorial portrait in “Your sleep is personal” |
+
+Every one is cropped for its role, then emitted as **WebP with a JPEG fallback** through
+`<picture>`, with explicit `width`/`height` to prevent layout shift, `loading="lazy"` on
+everything below the fold, and a `preload` on the one image the hero needs immediately. The
+two full-bleed bands are **art-directed**: a 2.2∶1 crop on desktop, a 1.2∶1 crop below 700px,
+so the subject survives a narrow viewport instead of being cropped into abstraction. Total
+WebP payload across the whole set is under 600 KB, of which roughly 70 KB is needed to render
+the hero.
+
+The meals are photographed in the camera at 3∶4 — the aspect a phone actually shoots — and
+shown in a 3∶4 preview window inside the taller screen, exactly the way a real camera app
+frames a shot. Detection labels are positioned in image space and mapped into that window,
+so they stay pinned to the right food.
+
+Dessert and drinks have no photograph, so they remain **hand-drawn SVG** — a bowl of chocolate
+ice cream and a cup of coffee, lit by the same warm evening lamp as the rest of the page.
+
+### Other notes
+
 - Fonts are **Fraunces** (display) and **Inter** (UI), loaded non-render-blocking with a
   system-font fallback stack.
 - `prefers-reduced-motion` is honoured throughout: animations collapse, sequences fast-forward,
